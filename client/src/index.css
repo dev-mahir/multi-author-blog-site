@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #abb7a3;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(70, 67, 67);
+}
+
+@layer base {
+  body {
+    @apply text-sm;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-[#000];
+  }
+  h2 {
+    @apply text-[40px] leading-[52px] font-medium;
+  }
+  h4 {
+    @apply text-[17px] font-medium;
+  }
+p{
+    @apply text-[15px] font-normal text-[rgba(0, 0, 0, 0.6)
+];
+
+}
+  input {
+    @apply px-4 py-2 w-full rounded-md outline-none  border focus:border-blue-300 text-gray-500 dark:bg-gray-700 dark:border-gray-500 dark:text-gray-200;
+  }
+  input[type="checkbox"] {
+    @apply inline-block w-auto;
+  }
+
+  textarea {
+    @apply px-4 py-2 w-full rounded-md outline-none  border focus:border-blue-300 text-gray-500 dark:bg-gray-700 dark:border-gray-500 dark:text-gray-200;
+  }
+  select {
+    @apply px-4 py-2 w-full rounded-md outline-none  border focus:border-blue-300 text-gray-500 dark:bg-gray-700 dark:border-gray-500 dark:text-gray-200;
+  }
+  label {
+    @apply block font-medium dark:text-gray-400 mb-1;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply duration-300 border text-[12px] px-3 py-[6px] font-medium rounded-[3px] sm:text-sm sm:px-6;
+  }
+  .btn-icon {
+    @apply flex items-center gap-x-2;
+  }
+
+  .btnicon {
+    @apply px-[6px] py-[6px] rounded-sm;
+  }
+
+  .btn-danger {
+    @apply bg-danger border-danger text-white;
+  }
+  .btn-primary {
+    @apply bg-primary border-primary text-white;
+  }
+
+  .btn-success {
+    @apply bg-success border-success text-white;
+  }
+
+  .btn-outline-danger {
+    @apply text-danger border-danger hover:bg-danger  hover:border-danger hover:text-white;
+  }
+  .btn-outline-primary {
+    @apply text-primary border-primary hover:bg-primary hover:border-primary hover:text-white;
+  }
+  .btn-outline-success {
+    @apply text-success border-success hover:bg-success hover:border-success hover:text-white;
+  }
+
+
+
+  
+  /*==================== custom class ===========================*/
+  .subtitle {
+    @apply text-[22px] font-medium ;
+  }
+
+}
