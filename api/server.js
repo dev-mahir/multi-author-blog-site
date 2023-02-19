@@ -5,8 +5,7 @@ import cookieParser from "cookie-parser";
 
 import connectDB from "./config/db.js";
 import errorHandler from "./middlewares/errorHandler.js";
-import userRoute from './routes/user.js'
-
+import userRoute from "./routes/user.js";
 
 // init express
 const app = express();
@@ -16,29 +15,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(express.static('api/public'))
+app.use(express.static("api/public"));
 
 // env config
-const env = dotenv.config();
+dotenv.config();
 
 // init env variables
 const PORT = process.env.PORT || 8080;
 
-
-
-
-
-
-app.use('/api/v1/user', userRoute)
-
-
-
+app.use("/api/v1/user", userRoute);
 
 // express error handler
 app.use(errorHandler);
 
+
 // listen server
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+  if (err) {
+    console.log("Server is not running");
+  } else {
     connectDB();
     console.log(`server is running at http://localhost:${PORT}`.bgGreen.black);
+  }
 });

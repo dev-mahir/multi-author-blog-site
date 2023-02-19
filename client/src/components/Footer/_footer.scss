@@ -1,0 +1,108 @@
+footer {
+  background-color: #333;
+  padding-top: 20px;
+  .container {
+    .row {
+      .col-4 {
+        .title {
+          padding: 20px 0;
+          h2 {
+            font-size: 18px;
+            color: white;
+            text-transform: uppercase;
+          }
+        }
+        .some-recent-article {
+          .row {
+            .col-4 {
+              .img {
+                margin-right: 10px;
+                height: 100px;
+                img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: 5px;
+                }
+              }
+            }
+            .col-8 {
+              a {
+                color: white;
+                font-weight: 600;
+              }
+              span {
+                color: gray;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+      .col-4 {
+        .title.cat {
+          padding: 20px 40px;
+        }
+        .cate-list {
+          padding: 0 40px;
+          .cate-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+            li {
+              display: flex;
+              align-items: center;
+              svg {
+                color: white;
+              }
+              a {
+                cursor: pointer;
+                color: white;
+                font-weight: 700;
+                transform: 0.3s;
+                &:hover {
+                  color: #ff9800;
+                }
+              }
+            }
+            span {
+              color: gray;
+            }
+          }
+        }
+      }
+    }
+  }
+  .copyright{
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .text{
+      font-size: 14px;
+      color: white;
+      a{
+        font-weight: 700;
+        cursor: pointer;
+        color: rgb(176, 148, 148);
+        transition: .3s;
+        &:hover{
+            color: white;
+        }
+      }
+    }
+    .terms{
+      a{
+        color: white;
+              font-size: 14px;
+              margin-left: 20px;
+
+      }
+    }
+  }
+}

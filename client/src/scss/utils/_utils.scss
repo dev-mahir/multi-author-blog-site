@@ -1,0 +1,88 @@
+// global css
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.form-group {
+  margin: 8px 0;
+}
+
+.form-control {
+  padding: 0px 5px;
+  width: 100%;
+  border: 1px solid var(--border_color);
+  outline: none;
+  height: 35px;
+  font-size: 15px;
+  transition: 0.5s;
+  font-weight: 300;
+  color: var(--text_color);
+  background-color: var(--main_bg);
+  &::placeholder {
+    font-weight: 300;
+    font-size: 15px;
+    color: var(--text_color);
+  }
+  &:focus {
+    border: 1px solid var(--primary);
+  }
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 px 8px;
+  font-size: 16px;
+  font-weight: 400;
+  border: transparent;
+  height: 33px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.card {
+  background-color: var(--main_bg);
+  padding: 15px 20px;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  div {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    display: inline-block;
+    animation: loading 1.4s ease-out both infinite;
+    border-radius: 50%;
+    margin: 1px;
+  }
+  .spinner1 {
+    animation-delay: -0.32s;
+  }
+  .spinner2 {
+    animation-delay: -0.16s;
+  }
+
+  @keyframes loading {
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+}

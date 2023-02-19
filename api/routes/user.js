@@ -20,21 +20,6 @@ import {
 // init router 
 const router = express.Router();
 
-import path, { resolve } from "path";
-import multer from 'multer';
-// multer for slider
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(resolve(), "api/public/slider"));
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + file.originalname);
-  },
-});
-
-
-const sliderFeatured = multer({ storage }).array('slider', 6);
 
 
 // user auth route 
@@ -43,7 +28,7 @@ router.post('/register', register)
 router.get('/me', loggedInUser)
 
 router.put('/profile-update/:id', userProfileUpdate)
-router.put("/featured-slider/:id", sliderFeatured, addFeaturedSlider);
+router.put("/featured-slider/:id",  addFeaturedSlider);
 
 router.get('/activate/:token', activateAccountByLink)
 

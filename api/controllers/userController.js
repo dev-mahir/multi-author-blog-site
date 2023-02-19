@@ -1,15 +1,15 @@
 import User from "../models/User.js";
-import createError from "../utility/createError.js";
-import { hash, passwordVarify } from "../utility/hash.js";
-import { getRandom } from "../utility/math.js";
+import createError from "../utilis/createError.js";
+import { hash, passwordVarify } from "../utilis/hash.js";
+import { getRandom } from "../utilis/math.js";
 import {
   sendActivationLink,
   sendPasswordForgotLink,
-} from "../utility/sendMail.js";
-import { sendOTP } from "../utility/sendSMS.js";
-import { createToken, tokenVerify } from "../utility/token.js";
-import { isEmail, isPhone } from "../utility/validate.js";
-import multer from "multer";
+} from "../utilis/sendMail.js";
+import { sendOTP } from "../utilis/sendSMS.js";
+import { createToken, tokenVerify } from "../utilis/token.js";
+import { isEmail, isPhone } from "../utilis/validate.js";
+
 
 /**
  * @access public
