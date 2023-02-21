@@ -5,7 +5,10 @@ import cookieParser from "cookie-parser";
 
 import connectDB from "./config/db.js";
 import errorHandler from "./middlewares/errorHandler.js";
+
 import userRoute from "./routes/user.js";
+import adminRoute from "./routes/adminRoute.js";
+import catRoute from "./routes/catRoute.js";
 
 // init express
 const app = express();
@@ -13,7 +16,7 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 
 app.use(express.static("api/public"));
 
@@ -24,6 +27,8 @@ dotenv.config();
 const PORT = process.env.PORT || 8080;
 
 app.use("/api/v1/user", userRoute);
+app.use( '/api/v1/admin', adminRoute);
+app.use( '/api/v1/category', catRoute);
 
 // express error handler
 app.use(errorHandler);

@@ -6,14 +6,13 @@ import { Link } from "react-router-dom";
 
 
 
-const DashboradArticle = () => {
+const DashboardArticle = () => {
 
     return (
         <div className='dashborad-article'>
             <Helmet>
                 <title>All Article</title>
             </Helmet>
-
             <div className="article-action-pagination">
                 <div className="numof-search-newAdd">
                     <div className="numof">
@@ -26,35 +25,30 @@ const DashboradArticle = () => {
                         <span><FaSearch /></span>
                     </div>
                     <div className="newAdd">
-                        <Link className='btn' to='/dashborad/article-add'>Add New</Link>
+                        <Link className='btn' to='/dashboard/article-add'>Add New</Link>
                     </div>
                 </div>
                 <div className="height-70vh">
                     <div className="articles">
-                       
-                                <div className="article">
-                                    <img src='' alt="" />
-                                    <Link to={`/artical/details/fff`}>link</Link>
-                                    <p></p>
-                                    <div className="action">
-                                        <span>
-                                            <Link to='/dashborad/article/edit'><MdEdit /></Link>
-                                        </span>
-                                        <span>
-                                            <Link><FaRegEye /></Link>
-                                        </span>
-                                        <span><MdDelete /></span>
-                                    </div>
-                                </div>
-                             'Article not found...'
-                    
+                        <div className="article">
+                            <img src='/images/register.jpg' alt="" />
+                            <Link to="/">link</Link>
+                            <p></p>
+                            <div className="action">
+                                <span>
+                                    <Link to='/dashboard/article/edit'><MdEdit /></Link>
+                                </span>
+                                <span>
+                                    <Link to="/"><FaRegEye /></Link>
+                                </span>
+                                <span><MdDelete /></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-        
-
             </div>
         </div>
     )
 }
 
-export default DashboradArticle
+export default DashboardArticle;

@@ -16,6 +16,12 @@
         background-color: #4b5077;
         transition: all 0.5s;
         grid-gap: 10px;
+        img{
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
         a {
             color: #2e2f34;
         }
@@ -44,6 +50,7 @@
         align-items: center;
         width: calc(100% - 275px);
         padding: 0px 25px 0px 10px;
+        box-shadow: var(--shadow_color);
         h2 {
             padding-left: 10px;
             display: flex;
@@ -104,10 +111,11 @@
                 display: flex;
                 align-items: center;
                 img {
-                    width: 40px;
-                    height: 40px;
+                    width: 35px;
+                    height: 35px;
                     border-radius: 50%;
                     margin-right: 10px;
+                    object-fit: cover;
                     cursor: pointer;
                     border: 1px solid gray;
                 }
@@ -115,14 +123,11 @@
             .name-time {
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
+                justify-content: flex-start;
+                align-items: flex-start;
                 h3 {
                     font-size: 16px;
                     font-weight: 400;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
                 }
                 span {
                     font-size: 13px;
@@ -135,11 +140,11 @@
 .natifications.show {
     transform: scale(1);
 }
-.message.show {
-    //transform: scale(1);
+.messages.show {
+    transform: scale(1);
 }
 .messages {
-    transform: scale(0) !important;
+    transform: scale(0);
 }
 .natifications,
 .messages {
@@ -147,14 +152,14 @@
     transition: transform 0.5s ease 0s;
     position: absolute;
     background-color: #fff;
-    overflow-y: scroll;
+    overflow-y: auto;
     width: 250px;
     height: 250px;
+    border-radius: 5px;
     right: calc(100% - 150px);
     padding: 10px;
     box-shadow: 0 0 0 0 rgba(90, 113, 208, 0.11), 0 4px 16px 0 rgba(167, 175, 183, 0.83);
     border: 1px solid rgba(167, 175, 183, 0.83);
-    border-radius: 0px;
     transform: scale(0);
     top: 58px;
     ul {
@@ -167,31 +172,29 @@
         }
         li {
             position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 3px;
-            &:hover {
-                .nDelete {
-                    transform: scale(1) !important;
-                }
-            }
+          
+            
             a{
                 font-size: 14px;
+                display: inline-block;
             }
             .nDelete {
-                position: absolute;
+                // position: absolute;
                 display: flex;
-                width: 22px;
-                height: 22px;
-                background-color: red;
+                width: 18px;
+                height: 18px;
                 border-radius: 50%;
-                right: 0;
-                top: 0;
+                background-color: #b7a4a4;
                 cursor: pointer;
                 justify-content: center;
                 align-items: center;
                 color: #fff;
-                font-size: 11px;
-                transition: all 0.5s;
-                transform: scale(0);
+                font-size: 10px;
+            
             }
         }
     }

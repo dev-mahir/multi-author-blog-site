@@ -12,13 +12,10 @@ export const createToken = (payload, exp) => {
   return token;
 };
 
-
-
-
 /**
  *  jwt verify
  */
 export const tokenVerify = (token) => {
   // create token
-  return token = jwt.verify(token, process.env.JWT_SECRET_KEY);
+  return (token = jwt.verify(token, process.env.JWT_SECRET_KEY));
 };

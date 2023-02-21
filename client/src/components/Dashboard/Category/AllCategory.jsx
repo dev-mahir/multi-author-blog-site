@@ -24,7 +24,7 @@ const AllCategory = () => {
                         <span><FaSearch /></span>
                     </div>
                     <div className="newAdd">
-                        <Link className='btn' to='/dashborad/add-category'>Add New</Link>
+                        <Link className='btn' to='/dashboard/add-category'>Add New</Link>
                     </div>
                 </div>
                 <div className="height-60vh">
@@ -32,7 +32,7 @@ const AllCategory = () => {
                        <div className="category">
                                 <div className="name">Algorithom</div>
                                 <div className="action">
-                                    <span><Link to={`/dashborad/category/edit/ll`}><MdEdit /></Link></span>
+                                <span><Link to={`/dashboard/category/edit/ll`}><MdEdit /></Link></span>
                                     <span><MdDelete /></span>
                                 </div>
                             </div>

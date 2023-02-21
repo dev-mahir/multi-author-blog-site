@@ -1,4 +1,4 @@
-import { hashSync } from 'bcrypt';
+import bcrypt, { hashSync } from 'bcrypt';
 
 
 /**

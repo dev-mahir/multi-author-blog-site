@@ -1,54 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
-import toast, { Toaster } from "react-hot-toast";
-import { add_category } from "../../store/actions/Dashborad/categoryAction";
-import { useDispatch, useSelector } from "react-redux";
 
 
-const Category = ({ history }) => {
 
-  const dispatch = useDispatch();
-  const { loader, categoryError, categorySuccessMessage } = useSelector(state => state.dashboradCategory);
 
-  const [state, setState] = useState({
-    categoryName: '',
-    categoryDes: ''
-  })
-  const inputHendle = (e) => {
-    setState({
-      ...state,
-      [e.target.name]: e.target.value
-    })
-  }
-  const addCategory = (e) => {
-    e.preventDefault();
-    dispatch(add_category(state));
-  }
+const Category = () => {
 
-  useEffect(() => {
-    if (categoryError && categoryError.error) {
-      toast.error(categoryError.error);
-      dispatch({ type: 'CATE_ERROR_MESSAGE_CLEAR' });
-    }
-    if (categorySuccessMessage) {
-      toast.success(categorySuccessMessage);
-      dispatch({ type: 'CATE_SUCCESS_MESSAGE_CLEAR' });
-      history.push('/dashborad/all-category');
-    }
-  }, [categoryError, categorySuccessMessage])
   return (
     <div className='add-category'>
-      <Toaster position={'bottom-center'}
-        reverseOrder={false}
-        toastOptions={
-          {
-            style: {
-              fontSize: '15px'
-            }
-          }
-        }
-      />
+
       <Helmet>
         <title>Category add</title>
       </Helmet>

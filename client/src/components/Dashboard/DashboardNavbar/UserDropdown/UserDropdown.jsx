@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import Avatar from '../../../Avatar/Avatar';
 
-const AdminInfo = () => {
+const UserDropdown = ({ toggle }) => {
   return (
-    <div className='adminInfo'>
+    <div className={`user_dropdown ${toggle ? "show" : ""}`}>
       <div className="image-email">
-        <img src='' alt="" />
-        <span>mdmahir.ds@gmail.com</span>
+        <Avatar />
+        <span>Md Mahir</span>
       </div>
       <ul>
         <li><Link to='/dashborad/profile'>Profile</Link></li>
@@ -17,4 +18,4 @@ const AdminInfo = () => {
   )
 }
 
-export default AdminInfo
+export default UserDropdown;
