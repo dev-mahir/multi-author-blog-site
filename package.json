@@ -3,18 +3,6 @@
   "version": "1.0.0",
   "description": "This is complete mern stack project",
   "main": "api/server.js",
-  "builds": [
-    {
-      "src": ".api/server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/"
-    }
-  ],
   "scripts": {
     "server": "nodemon ./api/server.js",
     "client": "npm start --prefix client",
