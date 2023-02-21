@@ -1,42 +1,11 @@
 {
-    "name": "facebook_development",
-    "version": "1.0.0",
-    "description": "This is complete mern stack project",
-    "main": "api/server.js",
-    "devDependencies": {},
-    "scripts": {
-        "server": "nodemon ./api/server.js",
-        "client": "npm start --prefix client",
-        "start": "concurrently \"yarn run server\" \"yarn run client\" "
-    },
-    "keywords": [],
-    "author": "",
-    "type": "module",
-    "license": "ISC",
-    "dependencies": {
-        "axios": "^1.2.0",
-        "bcrypt": "^5.1.0",
-        "colors": "^1.4.0",
-        "concurrently": "^7.3.0",
-        "cookie-parser": "^1.4.6",
-        "cors": "^2.8.5",
-        "date-and-time": "^2.4.2",
-        "dotenv": "^16.0.1",
-        "express": "^4.18.1",
-        "formidable": "^2.1.1",
-        "js-cookie": "^3.0.1",
-        "jsonwebtoken": "^8.5.1",
-        "mongoose": "^6.4.5",
-        "nodemailer": "^6.8.0",
-        "nodemon": "^2.0.20",
-        "validator": "^13.9.0"
-
-    }
-    ,
-
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "This is complete mern stack project",
+  "main": "api/server.js",
   "builds": [
     {
-      "src": "./server.js",
+      "src": ".api/server.js",
       "use": "@vercel/node"
     }
   ],
@@ -45,6 +14,32 @@
       "src": "/(.*)",
       "dest": "/"
     }
-  ]
-
+  ],
+  "scripts": {
+    "server": "nodemon ./api/server.js",
+    "client": "npm start --prefix client",
+    "start": "concurrently \"yarn run server\" \"yarn run client\" "
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.2.0",
+    "bcrypt": "^5.1.0",
+    "colors": "^1.4.0",
+    "concurrently": "^7.3.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "date-and-time": "^2.4.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "formidable": "^2.1.1",
+    "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.5",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20",
+    "validator": "^13.9.0"
+  }
 }
