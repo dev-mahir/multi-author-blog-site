@@ -41,6 +41,7 @@ const Register = () => {
     setEmptyMess("")
 
   }
+
   const handleImage = (e) => {
     setInput({
       ...input,
@@ -54,11 +55,15 @@ const Register = () => {
     if (!input.name || !input.email || !input.password || !input.image) {
       setEmptyMess("All fields are required");
     } else {
+
       const formData = new FormData();
+
       formData.append("name", input.name);
       formData.append("email", input.email);
       formData.append("password", input.password);
+      
       formData.append("image", input.image);
+
       dispatch(user_registration(formData, setInput, setImgPreview, e, navigate));
     }
   }

@@ -199,3 +199,18 @@ export const get_user = async (req, res, next) => {
     next(createError(500, "Internal server error. Try again"));
   }
 };
+
+export const block_unblock_user = async (req, res, next) => {
+  try {
+    const {id} = req.params
+
+    const user = await User.findById(id);
+    
+    res.status(200).json({
+      message: "Success",
+      user
+    });
+  } catch (error) {
+    next(createError(500, "Internal server error. Try again"));
+  }
+};

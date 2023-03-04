@@ -189,10 +189,12 @@ export const get_old_article = async (req, res, next) => {
   }
 };
 
+
 export const get_single_article = async (req, res, next) => {
   try {
     const { slug } = req.params;
     const article = await Article.findOne({ slug })
+      
       .populate("tag", "name slug")
       .populate("category", "name slug");
     article.views += 1;

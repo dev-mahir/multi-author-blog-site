@@ -103,6 +103,26 @@ export const get_all_user = () => async (dispatch) => {
 };
 
 
+export const block_user = (id) => async (dispatch) => {
+  dispatch({ type: SPINNER_START });
+  try {
+    axios
+      .get(`/api/v1/admin/user/block-user/${id}`)
+      .then((res) => {
+        dispatch({ type: SPINNER_STOP });
+        dispatch({ type: GET_ALL_USER, payload: res.data.user });
+      })
+      .catch((error) => {
+        dispatch({ type: SPINNER_STOP });
+        toast.error(error.response.data.message);
+      });
+  } catch (error) {
+    dispatch({ type: SPINNER_STOP });
+    toast.error(error.response.data.message);
+  }
+};
+
+
 
 export const check_token = (authToken) => async (dispatch) => {
   const token = authToken;

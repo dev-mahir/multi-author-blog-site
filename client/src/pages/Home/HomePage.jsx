@@ -21,19 +21,12 @@ const HomePage = () => {
             <div className="col-8">
               <Outlet />
             </div>
-
             <div className="col-4">
               <Sidebar/>
             </div>
-
-
           </div>
         </div>
       </div>
-
-
-
-
       <Footer />
       <div id="scroll">
         <button onClick={handleScrollTop} className="scroll-btn">

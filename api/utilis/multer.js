@@ -6,6 +6,7 @@ const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, path.join(__dirname, "api/public/images"));
   },
+
   filename: (req, file, cb) => {
     const types = /png|jpg|jpeg|webp|gif|webp|svg/;
     const ext = path.extname(file.originalname);
@@ -20,5 +21,8 @@ const storage = multer.diskStorage({
   },
 });
 
+
 const upload = multer({ storage });
+
 export default upload;
+
