@@ -1,0 +1,27 @@
+
+
+export const ADD_TAG = "ADD_TAG";
+
+export const GET_ARTICLE = "GET_ARTICLE";
+
+export const GET_SINGLE_ARTICLE = "GET_SINGLE_ARTICLE";
+
+export const GET_USERS_ARTICLE = "GET_USERS_ARTICLE";
+
+export const GET_OLD_ARTICLE = "GET_OLD_ARTICLE";
+
+export const GET_CATEGORY_ARTICLE = "GET_CATEGORY_ARTICLE";
+
+export const GET_TAG_ARTICLE = "GET_TAG_ARTICLE";
+
+export const SEARCH_ARTICLE = "SEARCH_ARTICLE";
+
+export const DELETE_ARTICLE = "DELETE_ARTICLE";
+
+
+
+
+
+
+
+

@@ -1,11 +1,8 @@
-
-
-// create initial state 
-
+// create initial state
 
 const initialState = {
-     category: null
-}
-
+  category: "",
+  single_category: "",
+};
 
 export default initialState;

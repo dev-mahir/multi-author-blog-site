@@ -6,6 +6,9 @@ const catSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    slug: {
+      type: String,
+    },
     description: {
       type: String,
     },

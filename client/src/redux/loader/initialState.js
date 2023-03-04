@@ -4,7 +4,8 @@
 
 const initialState = {
   loader: 0,
-  spinner: false
+  spinner: false,
+  circle_loader: false,
 };
 
 

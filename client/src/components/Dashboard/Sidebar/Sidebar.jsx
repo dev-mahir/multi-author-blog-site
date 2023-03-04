@@ -24,6 +24,7 @@ const Sidebar = () => {
             </label>
           </Link>
         </li>
+
         <li>
           <label htmlFor='article'>
             <h3>
@@ -43,6 +44,7 @@ const Sidebar = () => {
             </Link>
           </div>
         </li>
+
         <li>
           <label htmlFor='category'>
             <h3>
@@ -62,24 +64,16 @@ const Sidebar = () => {
             </Link>
           </div>
         </li>
+
         <li>
-          <label htmlFor='tag'>
-            <h3>
-              <span><FaTag /></span>
-              <span>Tag</span>
-            </h3>
-            <span className='right_icon3'><BsChevronRight /></span>
-          </label>
-          <div className="tag_category">
-            <Link to='/dashboard/all-tag'>
-              <span><FaEye /></span>
-              <span>All Tag</span>
-            </Link>
-            <Link to='/dashboard/add-tag'>
-              <span><FaPlusCircle /></span>
-              <span>Add Tag</span>
-            </Link>
-          </div>
+          <Link to='/dashboard/tag'>
+            <label>
+              <h3>
+                <span><FaTag /></span>
+                <span>Tag</span>
+              </h3>
+            </label>
+          </Link>
         </li>
         <li>
           <label htmlFor='user'>

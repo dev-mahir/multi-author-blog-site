@@ -1,16 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
+import Avatar from '../Avatar/Avatar';
+import { useDispatch, useSelector } from 'react-redux';
+import { user_logout } from '../../redux/auth/action';
+
 
 
 const Navbar = () => {
+  const { authenticate } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
+
+  const handleUserLogOut = () => { 
+    dispatch(user_logout())
+  }
+
+
   return (
     <header className='navbar'>
       <div className="container">
         <div className="row">
           <input type="checkbox" id="toggle" />
           <div className="col-4 logo" >
-
             <Link to="/" >
               <img src="/images/myBlog.png" alt="" />
             </Link>
@@ -27,12 +38,20 @@ const Navbar = () => {
               <li>
                 <Link to="/contact">Contact</Link>
               </li>
+              <li>
+                <div className="user" onClick={handleUserLogOut}>
+                  {authenticate && <Avatar />}    <Link to="/login">{authenticate ? "Logout" : "Login"}</Link>
+                </div>
+              </li>
             </ul>
           </div>
+          
         </div>
       </div>
     </header>
   )
 }
+
+
 
 export default Navbar;

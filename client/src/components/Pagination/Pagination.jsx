@@ -1,18 +1,41 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
-import { BsChevronDoubleLeft, BsChevronDoubleRight } from 'react-icons/bs'
+import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
 
-const Pagination = () => {
+const Pagination = ({ page, setPage, count, limit }) => {
+
+  const pageCount = Number(count / limit);
+
+
+  let pageItem = [];
+  for (let i = 0; i < pageCount; i++) {
+    pageItem.push(i)
+  }
+  
+
   return (
     <div className='pagination'>
       <ul>
-        <li><Link to="/"><BsChevronDoubleLeft /></Link></li>
-        <button className='btn' disabled> <span><BsChevronDoubleLeft /> </span></button>
-        <li className='active'><Link to="/">1</Link></li>
-        <li><Link to="/">2</Link></li>
-        <li><Link to="/">3</Link></li>
-        <button className='btn' disabled> <span><BsChevronDoubleLeft /> </span></button>
-        <li><Link to="/"><BsChevronDoubleRight /></Link></li>
+
+        <li>
+          <button onClick={() => setPage(page - 1)} disabled={page > 1 ? false : true}>
+            <BsChevronLeft />
+          </button>
+        </li>
+
+
+        {pageItem.map((item, index) =>
+          <li key={index} className={`${(page === item + 1) ? "active" : ""}`} >
+            <button onClick={() => setPage(item + 1)}>{item + 1}</button>
+          </li>
+        )}
+
+
+
+        <li>
+          <button onClick={() =>setPage(page + 1)}  disabled={ page === count ? true : false}>
+            <BsChevronRight />
+          </button>
+        </li>
 
       </ul>
 

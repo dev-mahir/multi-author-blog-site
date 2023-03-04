@@ -17,7 +17,7 @@ const AddCategory = () => {
 
 
   const handleInputChange = (e) => {
-    setInput((...prevState) => ({
+    setInput((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value
     }))
@@ -27,6 +27,7 @@ const AddCategory = () => {
     e.preventDefault();
     dispatch(add_cat(input, setInput));
   }
+
 
 
   return (
@@ -44,12 +45,6 @@ const AddCategory = () => {
           <div className="form-group">
             <label htmlFor="category_name">Category name</label>
             <input type="text" name='name' value={input.name} onChange={handleInputChange} className="form-control" placeholder='Name' />
-            <p className='error'>hh</p>
-          </div>
-          <div className="form-group">
-            <label htmlFor="category_des">Category description</label>
-            <textarea name='description' value={input.description} onChange={handleInputChange} type="text" className="form-control" placeholder='category description' id='category_des' />
-            <p className='error'>g</p>
           </div>
           <div className="form-group">
             <button className="btn btn-block">

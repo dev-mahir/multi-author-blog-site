@@ -8,7 +8,8 @@ const initialState = {
      userInfo: null,
      errorMessage: null,
      successMessage: null,
-     loader: false
+     loader: false,
+     user: []
 }
 
 

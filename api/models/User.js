@@ -2,20 +2,37 @@ import mongoose from "mongoose";
 
 const userSchema = mongoose.Schema(
   {
-    first_name: {
+    username: {
       type: String,
-      trim: true,
-      required: true,
     },
-   
-    status: {
-      type: Boolean,
-      default: false,
+    name: {
+      type: String,
     },
-    trash: {
-      type: Boolean,
-      default: false,
+    email: {
+      type: String,
     },
+    password: {
+      type: String,
+      // select: false, can't get this when we find or another method
+    },
+    image: {
+      type: String,
+    },
+    loginMethod: {
+      type: String,
+    },
+    role: {
+      type: String,
+      default: "user"
+    },
+    access_status: {
+      type: String,
+      default: "unblock",
+    },
+    access_token: {
+      type: String,
+      default: ""
+    }
   },
   {
     timestamp: true,

@@ -1,0 +1,61 @@
+.home {
+  background-color: var(--second_bg);
+  .main-content {
+    .container {
+      padding-top: 25px;
+      padding-bottom: 25px;
+      .row{
+        row-gap: 20px;
+      }
+    }
+  }
+
+
+  #scroll {
+    .scroll-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+      position: fixed;
+      bottom: 10px;
+      right: 4px;
+      cursor: pointer;
+      background-color: #216b1b;
+      color: white;
+      border: none;
+      border-radius: 2px;
+    }
+  }
+}
+
+
+
+
+
+
+@media only screen and ( max-width: 768px) {
+.home{
+  .row{
+    .col-4{
+      width: 100%;
+    }
+    .col-8{
+      width: 100%;
+    }
+  }
+}
+
+
+
+  
+}
+
+@media only screen and ( max-width: 992px) {
+  .container {
+    width: 100% !important;
+}
+
+  
+}

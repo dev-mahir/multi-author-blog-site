@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { BsBell, BsListUl } from "react-icons/bs";
-import { FaTrash } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import Avatar from '../../Avatar/Avatar';
 import UserDropdown from './UserDropdown/UserDropdown';
 import Notifications from './Notifications/Notifications';
 import UserMessage from './UserMessage/UserMessage';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 
 const DashboradNavbar = () => {
+  const { userInfo } = useSelector(state => state.auth);
   const [notiToggle, setNotiToggle] = useState(false);
   const [adminToggle, setAdminToggle] = useState(false);
 
@@ -20,10 +22,10 @@ const DashboradNavbar = () => {
         <div className="dashborad-navbar-left-side">
           <Avatar />
           <label className='bar' htmlFor="sidebar"><span><BsListUl /></span></label>
-          <h2><Link to='/dashborad'>Md  Mahir</Link></h2>
+          <h2><Link to='/dashborad'>{userInfo?.name}</Link></h2>
         </div>
         <div className="dashborad-navbar-right-side">
-          <h2><Link to='/dashborad'><span>View site</span></Link></h2>
+          <h2><Link to='/'><span>View site</span></Link></h2>
           <div className="search">
             <input type="text" placeholder='search' className="form-control" />
           </div>
@@ -45,8 +47,8 @@ const DashboradNavbar = () => {
                 <Avatar />
               </label>
               <div className="name-time">
-                <h3>Md Mahir</h3>
-                <span>215 jun</span>
+                <h3>{userInfo?.name}</h3>
+                <span>{moment(userInfo?.createdAt).format('ll') }</span>
               </div>
             </div>
 

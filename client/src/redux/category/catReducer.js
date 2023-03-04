@@ -1,5 +1,7 @@
 import {
   ADD_CAT,
+  GET_CAT,
+  GET_SINGLE_CAT,
   LOADER_START,
 } from "./actionTypes.js";
 import initialState from "./initialState.js";
@@ -14,6 +16,17 @@ const catReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
       };
+    case GET_CAT:
+      return {
+        ...state,
+        category: payload,
+      };
+    case GET_SINGLE_CAT:
+      return {
+        ...state,
+        single_category: payload,
+      };
+
     default:
       return state;
   }

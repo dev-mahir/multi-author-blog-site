@@ -1,6 +1,7 @@
 import axios from "axios";
+import { toast } from "react-toastify";
 import { SPINNER_START, SPINNER_STOP } from "../loader/actionTypes";
-import { ADD_CAT } from "./actionTypes";
+import { ADD_CAT, GET_CAT, GET_SINGLE_CAT } from "./actionTypes";
 
 export const add_cat = (data, setInput) => async (dispatch) => {
   dispatch({ type: SPINNER_START });
@@ -14,13 +15,88 @@ export const add_cat = (data, setInput) => async (dispatch) => {
         });
         dispatch({ type: SPINNER_STOP });
         dispatch({ type: ADD_CAT, payload: res.data });
+        toast.success("Category added");
       })
       .catch((error) => {
         dispatch({ type: SPINNER_STOP, payload: error.response.data.message });
-        console.log(error);
+        toast.error(error.response.data.message);
       });
   } catch (error) {
     dispatch({ type: SPINNER_STOP });
+    toast.error(error.response.data.message);
+  }
+};
+
+export const get_cat = (page, search, limit) => async (dispatch) => {
+  try {
+    axios
+      .get(`/api/v1/category/get?page=${page}&limit=${limit}`, search)
+      .then((res) => {
+        dispatch({ type: GET_CAT, payload: res.data.category });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+export const delete_catategory = (id, setShow) => async (dispatch) => {
+  dispatch({ type: SPINNER_START });
+  try {
+    axios
+      .delete(`/api/v1/category/${id}`)
+      .then((res) => {
+        dispatch({ type: SPINNER_STOP });
+        setShow(false);
+        dispatch(get_cat());
+        toast.success("Category deleted");
+      })
+      .catch((error) => {
+        console.log(error);
+        // dispatch({ type: SPINNER_STOP, payload: error.response.data.message });
+      });
+  } catch (error) {
+    // dispatch({ type: SPINNER_STOP });
+    console.log(error);
+  }
+};
+
+export const get_single_category = (id) => async (dispatch) => {
+  try {
+    axios
+      .get(`/api/v1/category/${id}`)
+      .then((res) => {
+        dispatch({ type: GET_SINGLE_CAT, payload: res.data.category });
+      })
+      .catch((error) => {
+        console.log(error);
+        // dispatch({ type: SPINNER_STOP, payload: error.response.data.message });
+      });
+  } catch (error) {
+    // dispatch({ type: SPINNER_STOP });
+    console.log(error);
+  }
+};
+
+export const edit_category = (id, data, setShow) => async (dispatch) => {
+  try {
+    axios
+      .patch(`/api/v1/category/${id}`, data)
+      .then((res) => {
+        setShow(false);
+        toast.success("Category updated");
+        dispatch(get_cat());
+      })
+      .catch((error) => {
+        console.log(error);
+        // dispatch({ type: SPINNER_STOP, payload: error.response.data.message });
+      });
+  } catch (error) {
+    // dispatch({ type: SPINNER_STOP });
     console.log(error);
   }
 };

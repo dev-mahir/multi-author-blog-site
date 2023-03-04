@@ -3,7 +3,7 @@ import { FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
 const Notifications = ({ toggle }) => {
-  console.log(toggle);
+
 
   return (
     <div className={`natifications ${toggle ? "show" : ""}`}>

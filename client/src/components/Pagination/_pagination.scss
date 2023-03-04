@@ -4,15 +4,23 @@
     align-items: center;
     margin-top: 15px;
     gap: 5px;
-  } 
-  li{
-    &.active{
-      background-color: #448db1;
-      color: white;
-    }
-    a{}
   }
-  li, button{
+  li {
+    &.active {
+      button {
+        background-color: #630f04 !important;
+        color: white;
+      }
+    }
+    button {
+      &:disabled {
+        background-color: #e0d9d8 !important;
+        cursor: not-allowed;
+      }
+    }
+  }
+  li,
+  button {
     background-color: #b4ccd8;
     border: 1px solid white;
     height: 33px;
@@ -23,9 +31,9 @@
     align-items: center;
     cursor: pointer;
   }
-  .btn{
+  .btn {
     display: none;
-    &:hover{
+    &:hover {
       background-color: #b4ccd8;
     }
   }

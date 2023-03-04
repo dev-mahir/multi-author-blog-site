@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 
 const Avatar = () => {
+  const { userInfo } = useSelector(state => state.auth);
+
+  
+
   return (
-    <img className='avatar' src="/images/avatar.png" alt="" />
+    <img className='avatar' src={userInfo?.image ? `/images/${userInfo?.image}` :  "/images/avatar.png"} alt="" />
   )
 }
 
-export default Avatar
+export default Avatar;

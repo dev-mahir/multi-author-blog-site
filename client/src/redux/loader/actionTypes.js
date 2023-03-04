@@ -1,7 +1,12 @@
 
 
-export const LOADER_START = "LOADER_START";
-export const LOADER_END = "LOADER_END";
+export const TOP_LOADER_START = "TOP_LOADER_START";
+export const TOP_LOADER_STOP = "TOP_LOADER_STOP";
+
+
+
+export const CIRCLE_LOADER_START = "CIRCLE_LOADER_START";
+export const CIRCLE_LOADER_STOP = "CIRCLE_LOADER_STOP";
 
 export const SPINNER_START = "SPINNER_START"
 export const SPINNER_STOP = "SPINNER_STOP"

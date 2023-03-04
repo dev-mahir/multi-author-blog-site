@@ -1,0 +1,26 @@
+$break575: 575px;
+$break768: 768px;
+
+// global
+@media (max-width: $break575) {
+  .container {
+    width: 100%;
+    padding: 10px;
+    .row {
+      .col-8 {
+        width: 100%;
+      }
+      .col-4 {
+        width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: $break768) {
+  .container {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+

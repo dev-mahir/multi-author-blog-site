@@ -1,9 +1,86 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Helmet from 'react-helmet';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { BsCardImage } from "react-icons/bs";
+import { useDispatch, useSelector } from 'react-redux';
+import { get_cat } from '../../../redux/category/action'
+import { get_tag } from '../../../redux/tag/action';
+import Editor from './Editor/Editor';
+import { add_article, get_single_article } from '../../../redux/article/action';
+import { slugGenerator } from '../../../utilis/slugGenerator';
+import Spinner from '../../Loader/Spinner/Spinner';
+import JoditEditor from 'jodit-react';
+
 
 const ArticleAdd = () => {
+    const { tag } = useSelector(state => state.tag);
+    const { category } = useSelector(state => state.cat);
+    const { spinner } = useSelector(state => state.loader);
+    const [imagePrev, setImagePrev] = useState("");
+    const [text, setText] = useState("");
+    const editor = useRef(null);
+    const dispatch = useDispatch();
+
+
+    const [input, setInput] = useState({
+        title: "",
+        tag: "",
+        category: "",
+        description: "",
+        slug: "",
+        image: "",
+    })
+
+
+
+
+    const handleInputChange = (e) => {
+        setInput((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+
+    }
+    const handleSlug = () => {
+        setInput((prevState) => ({
+            ...prevState,
+            slug: slugGenerator(input.title)
+        }));
+    }
+
+    const handleImage = (e) => {
+        setInput((prevState) => ({
+            ...prevState,
+            image: e.target.files[0]
+        }));
+        setImagePrev(URL.createObjectURL(e.target.files[0]));
+    }
+
+
+    const handleAddArticle = (e) => {
+        e.preventDefault();
+        if (!input.title) {
+            alert("all")
+        } else {
+            const formData = new FormData();
+            formData.append("title", input.title);
+            formData.append("slug", input.slug);
+            formData.append("category", input.category);
+            formData.append("tag", input.tag);
+            formData.append("image", input.image);
+            formData.append("description", text);
+            dispatch(add_article(formData, setInput, setText, setImagePrev, e));
+        }
+    }
+
+    console.log(text);
+
+    useEffect(() => {
+        dispatch(get_cat());
+        dispatch(get_tag());
+    }, [dispatch]);
+
+
 
     return (
         <div className='add-article'>
@@ -16,83 +93,73 @@ const ArticleAdd = () => {
                     <h2>Add Article</h2>
                     <Link className='btn' to="/dashborad/all-article">All Article</Link>
                 </div>
-                <form>
+                <form onSubmit={handleAddArticle}>
                     <div className="form-group">
                         <label htmlFor="title">Article title</label>
-                        <input type="text" name='title' placeholder='article title' className="form-control" id='title' />
-                        <p className='error'>title</p>
-
+                        <input type="text" name='title' onBlur={handleSlug} value={input.title} onChange={handleInputChange} placeholder='article title' className="form-control" id='title' />
 
                     </div>
                     <div className="form-group">
                         <label htmlFor="slug">Article slug</label>
-                        <input type="text" placeholder='article slug' className="form-control" name='slug' id='slug' />
-                        <p className='error'>slug</p>
+                        <input value={input.slug} name="slug" onChange={handleInputChange} type="text" placeholder='article slug' className="form-control" id='slug' />
+
 
                     </div>
-                    <button className='btn'>Update</button>
+
 
                     <div className="form-group">
                         <label htmlFor="category">Category</label>
-                        <select className='form-control' name="category" id="category">
+                        <select value={input.category} name="category" onChange={handleInputChange} className='form-control' id="category">
                             <option value="">--select article category--</option>
-                            <option>cat Name</option>
+                            {category && category.map((item, index) =>
+                                <option key={index} value={item._id}>{item.name}</option>
+                            )}
 
 
                         </select>
-                        <p className='error'>ca</p>
 
                     </div>
                     <div className="form-group">
                         <label htmlFor="tag">Tag</label>
-                        <select className='form-control' name="tag" id="tag">
+                        <select value={input.tag} onChange={handleInputChange} className='form-control' name="tag" id="tag">
                             <option value="sdas">--select article tag--</option>
-                            <option>tag name</option>
 
+                            {tag?.map((item, index) =>
+                                <option key={index} value={item._id}>{item.name}</option>
+                            )}
                         </select>
 
-                        <p className='error'></p>
+
 
                     </div>
                     <div className="form-group img_upload">
-                        <div className="upload">
-                            <label htmlFor="upload_image"><BsCardImage /></label>
-                            <input type="file" id='upload_image' />
-                        </div>
                         <label htmlFor="article text">Article text</label>
 
+                        <JoditEditor
+                            ref={editor}
+                            value={text}
+                            onChange={(newContent) => setText(newContent)}
+                        />
 
-                        <p className='error'></p>
 
                     </div>
                     <div className="form-group">
                         <label htmlFor="image">Image</label>
                         <div className="image-select">
-                            <span></span> : <span></span>
-
+                            <span> Upload Image</span>
                             <label htmlFor="image">Select Image</label>
-                            <input type="file" className="form-control" name='image' id='image' />
+                            <input type="file" onChange={handleImage} className="form-control" name='image' id='image' />
                         </div>
-                        <div className="image">
-                            <img src='' alt="" />
+                        {imagePrev && <div className="image" style={{ height: "300px" }}>
+                            <img style={{ objectFit: "cover", height: "100%" }} src={imagePrev} alt="" />
+                        </div>}
 
-
-                        </div>
-                        <p className='error'></p>
 
                     </div>
                     <div className="form-group">
-
-                        <button className="btn btn-block">
-                            <div className="spinner">
-                                <div className="spinner1"></div>
-                                <div className="spinner2"></div>
-                                <div className="spinner3"></div>
-                            </div>
+                        <button type='submit' className="btn btn-block">
+                            {spinner ? <Spinner /> : " Add Article"}
                         </button>
-                        <button className="btn btn-block">Add Article</button>
-
-
                     </div>
                 </form>
             </div>

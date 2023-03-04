@@ -3,11 +3,24 @@
   --fixed_dark: #404040;
   --text_color: #2c2f34;
   --second_bg: #f0f0f0;
+  --gray: gray;
   --main_bg: #ffffff;
   --primary: #ff9800;
   --shadow_color: 0 0 0 0 rgba(90, 113, 208, 0.11),0 4px 16px 0 rgba(167,175,183,.33);
   --border_color: #dee2e6;
+  --btn-bg: #e192a2;
+  --btn-color: #fff;
+  --hover-text: #ff9800;
 }
+
+
+
+
+
+
+
+
+
 
 
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
@@ -40,4 +53,9 @@ img{
 li{
 
   list-style: none;
+}
+
+
+textarea{
+  font-family: inherit;
 }

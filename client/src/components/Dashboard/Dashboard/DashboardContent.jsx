@@ -1,9 +1,11 @@
 import React from 'react';
+import { useSelector } from "react-redux";
 import { BsFillPeopleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Chart from 'react-apexcharts'
 
 const DashboardContent = () => {
+  const { views } = useSelector(state => state.dashboard);
   const chartOptions = {
     series: [
       {
@@ -23,7 +25,7 @@ const DashboardContent = () => {
         curve: "smooth"
       },
       xaxis: {
-        categories: ['Jan', "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep","Oct", "Nov", "Dec"]
+        categories: ['Jan', "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
       },
       legend: {
         position: "top"
@@ -38,14 +40,14 @@ const DashboardContent = () => {
 
       <div className="dashboard_elements">
         <div className="cards">
-          {/* fixed  */}
+
           <div className="single-card">
             <div className="card_icon">
               <BsFillPeopleFill />
             </div>
             <div className="card_info">
-              <h2>23</h2>
-              <span>Visitors</span>
+              <h2>{views}</h2>
+              <span>Views</span>
             </div>
           </div>
 

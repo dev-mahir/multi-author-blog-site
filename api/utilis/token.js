@@ -17,5 +17,5 @@ export const createToken = (payload, exp) => {
  */
 export const tokenVerify = (token) => {
   // create token
-  return (token = jwt.verify(token, process.env.JWT_SECRET_KEY));
+  return jwt.verify(token, process.env.JWT_SECRET_KEY);
 };

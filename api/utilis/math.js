@@ -1,10 +1,10 @@
+
+
 /**
- * Create a random number
- * @param {*} min
- * @param {*} max
- * @returns
+ * Create a OTP
+ * @returns OTP
  */
 
-export const getRandom = () => {
+export const generateOTP = () => {
   return Math.floor(Math.random() * (100000 - 999999)) + 999999;
 };

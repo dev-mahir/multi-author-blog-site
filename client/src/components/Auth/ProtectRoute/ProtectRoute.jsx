@@ -5,12 +5,17 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 
 const ProtectRoute = ({ children }) => {
-  const { authenticate } = useSelector(state => state.auth);
+  const { authenticate, userInfo } = useSelector(state => state.auth);
+
 
   if (!authenticate) {
-    return <Navigate to="/admin/login" replace />;
+    return <Navigate to="/login" replace />;
   }
-  return children ? children : <Outlet />;
+  if (userInfo?.role === "admin" || userInfo?.role === "editor") {
+    return children;
+  } else {
+    return <Navigate to="/" replace />;
+  }
 }
 
 export default ProtectRoute;
