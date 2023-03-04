@@ -41,9 +41,6 @@ app.get('/', (req, res) => {
 });
 
 
-
-
-
 // express error handler
 app.use(errorHandler);
 
