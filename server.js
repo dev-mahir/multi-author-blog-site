@@ -35,6 +35,15 @@ app.use("/api/v1/article", articleRoute);
 app.use("/api/v1/", dashboardRoute);
 
 
+
+app.get('/', (req, res) => { 
+  res.send("Hello world");
+});
+
+
+
+
+
 // express error handler
 app.use(errorHandler);
 
