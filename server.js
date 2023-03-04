@@ -3,13 +3,13 @@ import colors from "colors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
-import connectDB from "./config/db.js";
-import errorHandler from "./middlewares/errorHandler.js";
-import userRoute from "./routes/userRoute.js";
-import catRoute from "./routes/catRoute.js";
-import tagRoute from "./routes/tagRoute.js";
-import articleRoute from "./routes/articleRoute.js";
-import dashboardRoute from "./routes/dashboardRoutes.js";
+import connectDB from "./api/config/db.js";
+import errorHandler from "./api/middlewares/errorHandler.js";
+import userRoute from "./api/routes/userRoute.js";
+import catRoute from "./api/routes/catRoute.js";
+import tagRoute from "./api/routes/tagRoute.js";
+import articleRoute from "./api/routes/articleRoute.js";
+import dashboardRoute from "./api/routes/dashboardRoutes.js";
 
 
 
