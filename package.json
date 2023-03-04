@@ -4,9 +4,9 @@
   "description": "This is complete mern stack project",
   "main": "api/server.js",
   "scripts": {
-    "start": "node index.js",
+    "server": "node index.js",
     "client": "npm start --prefix client",
-    "starts": "concurrently \"yarn run start\" \"yarn run client\" "
+    "start": "concurrently \"yarn run server\" \"yarn run client\" "
   },
   "keywords": [],
   "author": "",
