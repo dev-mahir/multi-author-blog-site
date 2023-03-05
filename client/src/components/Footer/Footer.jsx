@@ -9,7 +9,7 @@ const Footer = () => {
   const { all_article } = useSelector(state => state.article);
   const dispatch = useDispatch();
 
-  const recentArticle = all_article.slice(0, 3);
+  const recentArticle = all_article?.slice(0, 3);
 
   useEffect(() => {
     dispatch(get_old_article());
@@ -24,9 +24,9 @@ const Footer = () => {
               <h2>Recent Article</h2>
             </div>
             <div className="some-recent-article">
-              {all_article.length === 0 && <p>No post found</p>}
+              {all_article?.length === 0 && <p>No post found</p>}
 
-              {recentArticle.length > 0 && recentArticle.map((item, index) =>
+              {recentArticle?.length > 0 && recentArticle.map((item, index) =>
                 <div key={index} className="row">
                   <div className="col-4">
                     <div className="img">
