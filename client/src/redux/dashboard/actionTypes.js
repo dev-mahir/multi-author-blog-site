@@ -1,4 +1,7 @@
 
 
 
+
 export const VISITOR_COUNT = "VISITOR_COUNT";
+
+export const GET_NOTIFICATION = "GET_NOTIFICATION";

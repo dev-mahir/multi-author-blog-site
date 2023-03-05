@@ -1,14 +1,18 @@
-import { VISITOR_COUNT } from "./actionTypes.js";
+import { GET_NOTIFICATION, VISITOR_COUNT } from "./actionTypes.js";
 import initialState from "./initialState.js";
 
 // create reducer
 const dashboardReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case VISITOR_COUNT:
-      console.log(payload);
       return {
         ...state,
-        views: payload
+        views: payload,
+      };
+    case GET_NOTIFICATION:
+      return {
+        ...state,
+        notification: payload
       };
 
     default:

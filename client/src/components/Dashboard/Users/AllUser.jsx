@@ -3,23 +3,25 @@ import Helmet from 'react-helmet';
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
-import { block_user, get_all_user } from '../../../redux/auth/action';
+import { block_user, change_user_role, get_all_user } from '../../../redux/auth/action';
 import { toCapitalize } from '../../../utilis/capitalize';
 import CircleLoader from '../../Loader/CircleLoader';
 
 
 const AllUser = () => {
     const { user, userInfo } = useSelector(state => state.auth);
+    const { circle_loader } = useSelector(state => state.loader);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(get_all_user());
-    }, []);
+    }, [dispatch]);
 
     return (
 
         <div className='all-user'>
-            {user.length > 0 ?
+            {circle_loader && <CircleLoader />}
+            {user?.length > 0 &&
                 <div className='all-sub-admin'>
                     <Helmet>
                         <title>All user</title>
@@ -27,7 +29,7 @@ const AllUser = () => {
                     <div className="elements-numberOf-search-add_new">
                         <div className="numof-search-newAdd">
                             <div className="numof">
-                                <h2>All user ({`${user.length - 1}`})</h2>
+                                <h2>All user ({`${user?.length - 1}`})</h2>
                             </div>
                             <div className="searchOf">
                                 <div className="search">
@@ -55,7 +57,7 @@ const AllUser = () => {
                                         </thead>
                                         <tbody>
 
-                                            {user.length > 0 && user.filter(item => item._id !== userInfo._id).map((item, index) =>
+                                            {user.length > 0 && user?.filter(item => item._id !== userInfo._id)?.map((item, index) =>
                                                 <tr key={index}>
                                                     <td data-label='No'>{index + 1}</td>
                                                     <td data-label='Name'>{item.name}</td>
@@ -70,9 +72,9 @@ const AllUser = () => {
                                                                 item.access_status === 'block' ? <abbr title='Unblock this user' className='unsus'>Unblock</abbr> : <abbr title="Block this user">Block</abbr>
                                                             }
                                                         </button>
-                                                        <button>
+                                                        <button onClick={() => dispatch(change_user_role(item._id))}>
                                                             {
-                                                                userInfo.role === 'admin' ? <abbr title='Make this user Editor'>Editor</abbr> : ''
+                                                                userInfo.role === 'admin' ? <abbr title='Change user role'>{item.role === 'user' ? "User" : "Editor"}</abbr> : ''
                                                             }
                                                         </button>
                                                     </td>
@@ -86,7 +88,7 @@ const AllUser = () => {
                             </div>
                         </div>
                     </div>
-                </div> : <CircleLoader />}
+                </div>}
 
         </div>
     )

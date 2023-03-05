@@ -68,7 +68,7 @@ const DashboardContent = () => {
 
         </div>
 
-
+{/* 
         <div className="card-chart">
           <Chart
             options={chartOptions.options}
@@ -78,7 +78,7 @@ const DashboardContent = () => {
             width="100%"
           />
 
-        </div>
+        </div> */}
 
 
       </div>

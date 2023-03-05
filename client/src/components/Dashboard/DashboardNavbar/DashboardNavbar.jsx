@@ -11,7 +11,6 @@ import moment from 'moment';
 
 const DashboradNavbar = () => {
   const { userInfo } = useSelector(state => state.auth);
-  const [notiToggle, setNotiToggle] = useState(false);
   const [adminToggle, setAdminToggle] = useState(false);
 
 
@@ -31,16 +30,14 @@ const DashboradNavbar = () => {
           </div>
           <div className="user">
             <div className="natification-message">
-              <div className="natification">
-                <div onClick={() => setNotiToggle(!notiToggle)}>
-                  <span><BsBell /></span>
-                  <div className="nCount">12</div>
-                </div>
+             
+              
+              <Notifications />
+              
+              
+              {/* <UserMessage /> */}
 
-                <Notifications toggle={notiToggle} />
 
-              </div>
-              <UserMessage />
             </div>
             <div className='user' onClick={() => setAdminToggle(!adminToggle)}>
               <label htmlFor="adminInfo">

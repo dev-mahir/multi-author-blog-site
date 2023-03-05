@@ -1,14 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import {
-  ADD_TAG,
-  DELETE_TAG,
-  GET_SINGLE_TAG,
-  GET_TAG,
-  TAG_UPDATED,
-  VISITOR_COUNT,
-} from "./actionTypes";
-
+import { GET_NOTIFICATION, VISITOR_COUNT } from "./actionTypes";
 
 export const visitors_count = () => async (dispatch) => {
   try {
@@ -24,4 +16,53 @@ export const visitors_count = () => async (dispatch) => {
     toast.error(error.response.data.message);
   }
 };
+
+export const get_notification = () => async (dispatch) => {
+  try {
+    axios
+      .get("/api/v1/notification/get")
+      .then((res) => {
+        dispatch({ type: GET_NOTIFICATION, payload: res.data.notification });
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+export const create_notification = (data) => async (dispatch) => {
+  try {
+    axios
+      .post("/api/v1/notification/create", data)
+      .then((res) => {
+        // dispatch({ type: GET_NOTIFICATION });
+        console.log(res.data);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+
+
+export const update_notification = (id) => async (dispatch) => {
+  try {
+    axios
+      .patch(`/api/v1/notification/update/${id}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+      });
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
 

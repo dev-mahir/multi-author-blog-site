@@ -14,7 +14,7 @@ const router = Router();
 
 
 router.put("/user/role/:id", change_user_role);
-router.post("/user/block/:id", block_unblock_user);
+router.put("/user/block/:id", block_unblock_user);
 
 
 router.post("/user/login", user_login);

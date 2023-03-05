@@ -2,9 +2,9 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "This is complete mern stack project",
-  "main": "api/server.js",
+  "main": "index.js",
   "scripts": {
-    "server": "node index.js",
+    "server": "nodemon index.js",
     "client": "npm start --prefix client",
     "start": "concurrently \"yarn run server\" \"yarn run client\" "
   },

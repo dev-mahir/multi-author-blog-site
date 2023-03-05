@@ -94,7 +94,8 @@ const Sidebar = () => {
             </Link>
           </div>
         </li>
-        <li>
+
+        {/* <li>
           <Link to='/dashboard/comments'>
             <label>
               <h3>
@@ -103,7 +104,8 @@ const Sidebar = () => {
               </h3>
             </label>
           </Link>
-        </li>
+        </li> */}
+        
       </ul>
     </div>
   )

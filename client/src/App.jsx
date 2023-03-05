@@ -27,7 +27,7 @@ import { getCookie } from "./utilis/cookies";
 import ErrorPage from "./pages/Error/ErrorPage";
 import HomePage from "./pages/Home/HomePage";
 import Home from "./components/Home/HomepageContent/Home";
-import { visitors_count } from "./redux/dashboard/action";
+import { get_notification, visitors_count } from "./redux/dashboard/action";
 import CircleLoader from "./components/Loader/CircleLoader";
 
 
@@ -46,7 +46,9 @@ function App() {
 
   useEffect(() => {
     dispatch(get_cat());
+    dispatch(get_notification());
   }, [dispatch]);
+
 
 
 

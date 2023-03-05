@@ -2,14 +2,13 @@ import { deleteCookie } from "../../utilis/cookies.js";
 import {
   LOGIN_SUCCESS,
   CHECK_EMPTY_FIELD,
-  LOADER_START,
-  LOADER_STOP,
-  USER_REGISTRATION,
+  CHANGE_USER_ROLE,
   EMAIL_VERIFY,
   USER_LOGIN,
   CHECK_TOKEN,
   USER_LOGOUT,
   GET_ALL_USER,
+  USER_BLOCK,
 } from "./actionTypes.js";
 import initialState from "./initialState.js";
 
@@ -38,13 +37,31 @@ const authReducer = (state = initialState, { type, payload }) => {
     case GET_ALL_USER:
       return {
         ...state,
-        user:payload
+        user: payload,
       };
     case CHECK_TOKEN:
       return {
         ...state,
         authenticate: true,
         userInfo: payload,
+      };
+
+    case USER_BLOCK:
+      return {
+        ...state,
+        user: [
+          ...state.user.filter((item) => item._id !== payload._id),
+          payload,
+        ],
+      };
+
+    case CHANGE_USER_ROLE:
+      return {
+        ...state,
+        user: [
+          ...state.user.filter((item) => item._id !== payload._id),
+          payload,
+        ],
       };
 
     case CHECK_EMPTY_FIELD:

@@ -9,6 +9,8 @@ import {
   USER_LOGOUT,
   USER_REGISTRATION,
   GET_ALL_USER,
+  USER_BLOCK,
+  CHANGE_USER_ROLE,
 } from "./actionTypes";
 
 
@@ -103,14 +105,15 @@ export const get_all_user = () => async (dispatch) => {
 };
 
 
+
 export const block_user = (id) => async (dispatch) => {
   dispatch({ type: SPINNER_START });
   try {
     axios
-      .get(`/api/v1/admin/user/block-user/${id}`)
+      .put(`/api/v1/admin/user/block/${id}`)
       .then((res) => {
         dispatch({ type: SPINNER_STOP });
-        dispatch({ type: GET_ALL_USER, payload: res.data.user });
+        dispatch({ type: USER_BLOCK, payload: res.data.user });
       })
       .catch((error) => {
         dispatch({ type: SPINNER_STOP });
@@ -121,6 +124,26 @@ export const block_user = (id) => async (dispatch) => {
     toast.error(error.response.data.message);
   }
 };
+
+export const change_user_role = (id) => async (dispatch) => {
+  dispatch({ type: SPINNER_START });
+  try {
+    axios
+      .put(`/api/v1/admin/user/role/${id}`)
+      .then((res) => {
+        dispatch({ type: SPINNER_STOP });
+        dispatch({ type: CHANGE_USER_ROLE, payload: res.data.user });
+      })
+      .catch((error) => {
+        dispatch({ type: SPINNER_STOP });
+        toast.error(error.response.data.message);
+      });
+  } catch (error) {
+    dispatch({ type: SPINNER_STOP });
+    toast.error(error.response.data.message);
+  }
+};
+
 
 
 
