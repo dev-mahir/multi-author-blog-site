@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../../api/api";
 import { SPINNER_START, SPINNER_STOP } from "../loader/actionTypes";
 import { ADD_CAT, GET_CAT, GET_SINGLE_CAT } from "./actionTypes";
 
@@ -30,7 +31,10 @@ export const add_cat = (data, setInput) => async (dispatch) => {
 export const get_cat = (page, search, limit) => async (dispatch) => {
   try {
     axios
-      .get(`/api/v1/category/get?page=${page}&limit=${limit}`, search)
+      .get(
+        `${API_BASE_URL}/api/v1/category/get?page=${page}&limit=${limit}`,
+        search
+      )
       .then((res) => {
         dispatch({ type: GET_CAT, payload: res.data.category });
       })
@@ -48,7 +52,7 @@ export const delete_catategory = (id, setShow) => async (dispatch) => {
   dispatch({ type: SPINNER_START });
   try {
     axios
-      .delete(`/api/v1/category/${id}`)
+      .delete(`${API_BASE_URL}/api/v1/category/${id}`)
       .then((res) => {
         dispatch({ type: SPINNER_STOP });
         setShow(false);
@@ -68,7 +72,7 @@ export const delete_catategory = (id, setShow) => async (dispatch) => {
 export const get_single_category = (id) => async (dispatch) => {
   try {
     axios
-      .get(`/api/v1/category/${id}`)
+      .get(`${API_BASE_URL}/api/v1/category/${id}`)
       .then((res) => {
         dispatch({ type: GET_SINGLE_CAT, payload: res.data.category });
       })
@@ -85,7 +89,7 @@ export const get_single_category = (id) => async (dispatch) => {
 export const edit_category = (id, data, setShow) => async (dispatch) => {
   try {
     axios
-      .patch(`/api/v1/category/${id}`, data)
+      .patch(`${API_BASE_URL}/api/v1/category/${id}`, data)
       .then((res) => {
         setShow(false);
         toast.success("Category updated");

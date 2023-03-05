@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../../api/api";
 import { SPINNER_START, SPINNER_STOP } from "../loader/actionTypes";
 import {
   EMAIL_VERIFY,
@@ -20,7 +21,7 @@ export const user_registration =
     dispatch({ type: SPINNER_START });
     try {
       axios
-        .post("/api/v1/admin/user/register", data)
+        .post(`${API_BASE_URL}/api/v1/admin/user/register`, data)
         .then((res) => {
           setInput({
             email: "",
@@ -30,7 +31,7 @@ export const user_registration =
           });
           setImgPreview("");
           e.target.reset();
-          dispatch({ type:SPINNER_STOP });
+          dispatch({ type: SPINNER_STOP });
           dispatch({ type: USER_REGISTRATION, payload: res.data });
           navigate("/user/email-verify");
         })
@@ -46,7 +47,7 @@ export const email_verify = (data, setInput, navigate) => async (dispatch) => {
   dispatch({ type: SPINNER_START });
   try {
     axios
-      .post("/api/v1/admin/user/email-verify", { otp: data })
+      .post(`${API_BASE_URL}/api/v1/admin/user/email-verify`, { otp: data })
       .then((res) => {
         setInput("");
         dispatch({ type: EMAIL_VERIFY, payload: res.data });
@@ -66,7 +67,7 @@ export const user_login = (data, setInput) => async (dispatch) => {
   dispatch({ type: SPINNER_START });
   try {
     axios
-      .post("/api/v1/admin/user/login", data)
+      .post(`${API_BASE_URL}/api/v1/admin/user/login`, data)
       .then((res) => {
         setInput({
           email: "",
@@ -89,7 +90,7 @@ export const get_all_user = () => async (dispatch) => {
   dispatch({ type: SPINNER_START });
   try {
     axios
-      .get("/api/v1/admin/user")
+      .get(`${API_BASE_URL}/api/v1/admin/user`)
       .then((res) => {
         dispatch({ type: SPINNER_STOP });
         dispatch({ type: GET_ALL_USER, payload: res.data.user });
@@ -110,7 +111,7 @@ export const block_user = (id) => async (dispatch) => {
   dispatch({ type: SPINNER_START });
   try {
     axios
-      .put(`/api/v1/admin/user/block/${id}`)
+      .put(`${API_BASE_URL}/api/v1/admin/user/block/${id}`)
       .then((res) => {
         dispatch({ type: SPINNER_STOP });
         dispatch({ type: USER_BLOCK, payload: res.data.user });
@@ -129,7 +130,7 @@ export const change_user_role = (id) => async (dispatch) => {
   dispatch({ type: SPINNER_START });
   try {
     axios
-      .put(`/api/v1/admin/user/role/${id}`)
+      .put(`${API_BASE_URL}/api/v1/admin/user/role/${id}`)
       .then((res) => {
         dispatch({ type: SPINNER_STOP });
         dispatch({ type: CHANGE_USER_ROLE, payload: res.data.user });

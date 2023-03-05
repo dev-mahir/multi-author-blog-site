@@ -7,7 +7,7 @@ import dashboardReducer from "./dashboard/dashboardReducer.js";
 import loaderReducer from "./loader/loadarReducer.js";
 import tagReducer from "./tag/tagReducer.js";
 
-// create root reducer 
+// create root reducer
 
 const rootReducer = combineReducers({
   auth: authReducer,

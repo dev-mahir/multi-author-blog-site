@@ -1,11 +1,12 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../../api/api";
 import { GET_NOTIFICATION, VISITOR_COUNT } from "./actionTypes";
 
 export const visitors_count = () => async (dispatch) => {
   try {
     axios
-      .post("/api/v1/visitors-count")
+      .post(`${API_BASE_URL}/api/v1/visitors-count`)
       .then((res) => {
         dispatch({ type: VISITOR_COUNT, payload: res.data.count });
       })
@@ -17,10 +18,11 @@ export const visitors_count = () => async (dispatch) => {
   }
 };
 
+
 export const get_notification = () => async (dispatch) => {
   try {
     axios
-      .get("/api/v1/notification/get")
+      .get(`${API_BASE_URL}/api/v1/notification/get`)
       .then((res) => {
         dispatch({ type: GET_NOTIFICATION, payload: res.data.notification });
       })
@@ -32,10 +34,11 @@ export const get_notification = () => async (dispatch) => {
   }
 };
 
+
 export const create_notification = (data) => async (dispatch) => {
   try {
     axios
-      .post("/api/v1/notification/create", data)
+      .post(`${API_BASE_URL}/api/v1/notification/create`, data)
       .then((res) => {
         // dispatch({ type: GET_NOTIFICATION });
         console.log(res.data);
@@ -53,7 +56,7 @@ export const create_notification = (data) => async (dispatch) => {
 export const update_notification = (id) => async (dispatch) => {
   try {
     axios
-      .patch(`/api/v1/notification/update/${id}`)
+      .patch(`${API_BASE_URL}/api/v1/notification/update/${id}`)
       .then((res) => {
         console.log(res.data);
       })

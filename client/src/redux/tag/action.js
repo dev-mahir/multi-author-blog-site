@@ -1,5 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_BASE_URL } from "../../api/api";
 import {
   ADD_TAG,
   DELETE_TAG,
@@ -11,7 +12,7 @@ import {
 export const add_tag = (data, setInput, setAddShow) => async (dispatch) => {
   try {
     axios
-      .post("/api/v1/tag", data)
+      .post(`${API_BASE_URL}/api/v1/tag`, data)
       .then((res) => {
         setInput({
           name: "",
@@ -32,7 +33,7 @@ export const add_tag = (data, setInput, setAddShow) => async (dispatch) => {
 export const get_tag = (page, search, limit) => async (dispatch) => {
   try {
     axios
-      .get(`/api/v1/tag/get?page=${page}&limit=${limit}`, search)
+      .get(`${API_BASE_URL}/api/v1/tag/get?page=${page}&limit=${limit}`, search)
       .then((res) => {
         dispatch({ type: GET_TAG, payload: res.data.tag });
       })
@@ -48,7 +49,7 @@ export const get_tag = (page, search, limit) => async (dispatch) => {
 export const delete_tag = (id, setShow) => async (dispatch) => {
   try {
     axios
-      .delete(`/api/v1/tag/${id}`)
+      .delete(`${API_BASE_URL}/api/v1/tag/${id}`)
       .then((res) => {
         setShow(false);
         toast.success("tag deleted");
@@ -66,7 +67,7 @@ export const delete_tag = (id, setShow) => async (dispatch) => {
 export const get_single_tag = (id) => async (dispatch) => {
   try {
     axios
-      .get(`/api/v1/tag/${id}`)
+      .get(`${API_BASE_URL}/api/v1/tag/${id}`)
       .then((res) => {
         dispatch({ type: GET_SINGLE_TAG, payload: res.data.tag });
       })
@@ -81,7 +82,7 @@ export const get_single_tag = (id) => async (dispatch) => {
 export const edit_tag = (id, data, setShow) => async (dispatch) => {
   try {
     axios
-      .patch(`/api/v1/tag/${id}`, data)
+      .patch(`${API_BASE_URL}/api/v1/tag/${id}`, data)
       .then((res) => {
         setShow(false);
         toast.success("Tag updated");

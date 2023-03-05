@@ -3,7 +3,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
-import cors from 'cors'
+import cors from "cors";
 
 import connectDB from "./api/config/db.js";
 import errorHandler from "./api/middlewares/errorHandler.js";
@@ -13,8 +13,6 @@ import tagRoute from "./api/routes/tagRoute.js";
 import articleRoute from "./api/routes/articleRoute.js";
 import dashboardRoute from "./api/routes/dashboardRoutes.js";
 
-
-
 // init express
 const app = express();
 
@@ -22,20 +20,27 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+
+app.use(function (req, res, next) {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://query-orpin.vercel.app/"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+
 app.use(express.static("api/public"));
 
 // env config
 dotenv.config();
 
-
 app.use(morgan("tiny"));
 
-
-
-
-
-app.get('/', (req, res) => { 
+app.get("/", (req, res) => {
   res.send("Hello world");
 });
 
@@ -45,17 +50,11 @@ app.use("/api/v1/tag", tagRoute);
 app.use("/api/v1/article", articleRoute);
 app.use("/api/v1/", dashboardRoute);
 
-
-
-
-
-
 // express error handler
 app.use(errorHandler);
 
 // init env variables
 const PORT = process.env.PORT || 8080;
-
 
 // listen server
 app.listen(PORT, (err) => {
