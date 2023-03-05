@@ -2,6 +2,7 @@ import express from "express";
 import colors from "colors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import morgan from "morgan";
 
 import connectDB from "./api/config/db.js";
 import errorHandler from "./api/middlewares/errorHandler.js";
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static("api/public"));
+app.use(morgan())
 
 // env config
 dotenv.config();
