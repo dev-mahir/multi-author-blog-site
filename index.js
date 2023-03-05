@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://query-orpin.vercel.app/"
+    "https://vercel.app" || "https://query-orpin.vercel.app" || "http://localhost:3000"
   );
   res.header(
     "Access-Control-Allow-Headers",
