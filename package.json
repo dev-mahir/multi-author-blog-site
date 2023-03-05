@@ -4,7 +4,7 @@
   "description": "This is complete mern stack project",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js",
+    "server": "node index.js",
     "client": "npm start --prefix client",
     "start": "concurrently \"yarn run server\" \"yarn run client\" "
   },
