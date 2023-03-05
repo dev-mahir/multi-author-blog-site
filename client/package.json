@@ -60,8 +60,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {},
-  "quokka": {
-    "babel": true
-  }
+  "buffer": false 
 }

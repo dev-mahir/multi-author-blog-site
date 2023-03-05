@@ -200,15 +200,30 @@ export const get_user = async (req, res, next) => {
   }
 };
 
+
 export const block_unblock_user = async (req, res, next) => {
   try {
-    const {id} = req.params
+    const { id } = req.params;
 
     const user = await User.findById(id);
     
     res.status(200).json({
       message: "Success",
       user
+    });
+  } catch (error) {
+    next(createError(500, "Internal server error. Try again"));
+  }
+};
+export const change_user_role = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+
+    res.status(200).json({
+      message: "Success",
+      user,
     });
   } catch (error) {
     next(createError(500, "Internal server error. Try again"));
