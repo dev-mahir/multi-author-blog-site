@@ -12,16 +12,15 @@ import upload from '../utilis/multer.js'
 const router = Router();
 
 
+
+router.put("/user/role/:id", change_user_role);
 router.post("/user/block/:id", block_unblock_user);
 
 
 router.post("/user/login", user_login);
 
-router.patch("/user/:id", change_user_role);
 
 router.get("/user", get_user);
-
-
 
 router.post("/user/register", upload.single('image'), userRegister);
 

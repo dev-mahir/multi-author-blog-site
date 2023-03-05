@@ -29,6 +29,12 @@ dotenv.config();
 
 
 
+
+
+app.get('/', (req, res) => { 
+  res.send("Hello world");
+});
+
 app.use("/api/v1/admin", userRoute);
 app.use("/api/v1/category", catRoute);
 app.use("/api/v1/tag", tagRoute);
@@ -37,9 +43,7 @@ app.use("/api/v1/", dashboardRoute);
 
 
 
-app.get('/', (req, res) => { 
-  res.send("Hello world");
-});
+
 
 
 // express error handler

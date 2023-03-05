@@ -369,3 +369,24 @@ export const add_reply = async (req, res, next) => {
     next(createError(500, "Internal server error"));
   }
 };
+
+
+export const popular_article = async (req, res, next) => {
+  try {
+    
+    const article = await Article.aggregate([
+      { $match: {} },
+      { $sort: 'views' }
+    ]);
+
+    
+
+    res.status(201).json({
+      message: "Success",
+      comment: replyComment,
+    });
+  } catch (error) {
+    console.log(error);
+    next(createError(500, "Internal server error"));
+  }
+};

@@ -8,6 +8,15 @@ import { generateOTP } from "../utilis/math.js";
 import { sentOTPCode } from "../utilis/sendMail.js";
 import { createToken, tokenVerify } from "../utilis/token.js";
 
+export const change_user_role = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+  } catch (error) {
+    next(createError(500, "Internal server error. Try again"));
+  }
+};
+
 export const user_login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -193,39 +202,45 @@ export const get_user = async (req, res, next) => {
     const user = await User.find();
     res.status(200).json({
       message: "Success",
-      user
-    });
-  } catch (error) {
-    next(createError(500, "Internal server error. Try again"));
-  }
-};
-
-
-export const block_unblock_user = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const user = await User.findById(id);
-    
-    res.status(200).json({
-      message: "Success",
-      user
-    });
-  } catch (error) {
-    next(createError(500, "Internal server error. Try again"));
-  }
-};
-export const change_user_role = async (req, res, next) => {
-  try {
-    const { id } = req.params;
-
-    const user = await User.findById(id);
-
-    res.status(200).json({
-      message: "Success",
       user,
     });
   } catch (error) {
     next(createError(500, "Internal server error. Try again"));
+  }
+};
+
+export const block_unblock_user = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log(id);
+    res.send(id);
+    // const user = await User.findById(id);
+
+    // if (user.access_status === "block") {
+    //   const user = await findByIdAndUpdate(
+    //     id,
+    //     { access_status: "unblock" },
+    //     { new: true }
+    //   );
+    //  return res.status(200).json({
+    //     message: "Success",
+    //     user,
+    //   });
+    // }
+
+    // if (user.access_status === "unblock") {
+    //   const user = await findByIdAndUpdate(
+    //     id,
+    //     { access_status: "block" },
+    //     { new: true }
+    //   );
+    //  return res.status(200).json({
+    //     message: "Success",
+    //     user,
+    //   });
+    // }
+  } catch (error) {
+    next(createError(500, "Internal server error. Try again"));
+    console.log(error);
   }
 };

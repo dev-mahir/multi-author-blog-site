@@ -14,6 +14,7 @@ import {
   delete_article,
   search_article,
   get_comment,
+  popular_article,
   add_reply,
 } from "../controllers/articleController.js";
 import { authMiddleware } from "../middlewares/authMiddleware.js";
@@ -26,6 +27,7 @@ router.post("/", authMiddleware, upload.single("image"), add_article);
 router.get("/", get_article);
 router.get("/old-article", get_old_article);
 router.get("/get/all", get_all_article);
+router.get("/popular-article", popular_article);
 
 
 router.post("/add-comment", add_comment);
