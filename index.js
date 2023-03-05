@@ -3,6 +3,7 @@ import colors from "colors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
+import cors from 'cors'
 
 import connectDB from "./api/config/db.js";
 import errorHandler from "./api/middlewares/errorHandler.js";
@@ -21,13 +22,14 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 app.use(express.static("api/public"));
-app.use(morgan())
 
 // env config
 dotenv.config();
 
 
+app.use(morgan("tiny"));
 
 
 
