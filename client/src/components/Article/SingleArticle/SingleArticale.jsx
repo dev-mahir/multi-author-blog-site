@@ -22,7 +22,6 @@ const SingleArticale = () => {
   const { single_article } = useSelector(state => state.article);
   const { cat_article } = useSelector(state => state.article);
   const [loginModal, setloginModal] = useState(false);
-  const ref = useRef();
   const dispatch = useDispatch();
   const params = useParams();
   const navigate = useNavigate()
@@ -31,6 +30,7 @@ const SingleArticale = () => {
   const cat_slug = single_article?.category?.slug;
   const relatedArticle = cat_article.slice(0, 3).filter(item => item._id !== single_article._id);
 
+  const userLike = single_article?.like_userId?.find( item => item === userInfo?._id);
 
   const handleLike = () => {
     if (!userInfo) {
@@ -94,11 +94,11 @@ const SingleArticale = () => {
           <div className="like-dislike-view">
             <div className="like-dislike">
               <div onClick={handleLike} className="like">
-                <button disabled className='icon'><AiFillLike /></button>
+                <button disabled className='icon'><AiFillLike style={{ color: userLike ? "#89CFF0" : ""}} /></button>
                 <div className="dislike-number">{single_article.like}</div>
               </div>
               <div onClick={handledislike} className="dislike">
-                <button disabled className='icon'><AiFillDislike /></button>
+                <button disabled className='icon'><AiFillDislike style={{ color: userLike ? "#800000" : "" }} /></button>
                 <div className="like-number">{single_article.dislike}</div>
               </div>
             </div>
@@ -126,7 +126,7 @@ const SingleArticale = () => {
               </div>
               <div className="articles">
                 {relatedArticle.map((item, index) => {
-                  return <Link key={index} to={`/artical/details/${item.slug}`} className='article'>
+                  return <Link key={index} to={`/article/details/${item.slug}`} className='article'>
                     <img src={`/images/${item.image}`} alt="" />
                     <span className='line-clamp-3'>{item.title}</span>
                   </Link>

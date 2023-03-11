@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { block_user, change_user_role, get_all_user } from '../../../redux/auth/action';
 import { toCapitalize } from '../../../utilis/capitalize';
 import CircleLoader from '../../Loader/CircleLoader';
+import BlockCircleLoader from '../../Loader/BlockCircleLoader/BlockCircleLoader';
 
 
 const AllUser = () => {
     const { user, userInfo } = useSelector(state => state.auth);
-    const { circle_loader } = useSelector(state => state.loader);
+    const { block_circle_loader } = useSelector(state => state.loader);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -20,7 +21,6 @@ const AllUser = () => {
     return (
 
         <div className='all-user'>
-            {circle_loader && <CircleLoader />}
             {user?.length > 0 &&
                 <div className='all-sub-admin'>
                     <Helmet>
@@ -31,15 +31,14 @@ const AllUser = () => {
                             <div className="numof">
                                 <h2>All user ({`${user?.length - 1}`})</h2>
                             </div>
-                            <div className="searchOf">
+
+                            {/* <div className="searchOf">
                                 <div className="search">
                                     <input type="text" placeholder='Search user' className="form-control" />
                                 </div>
                                 <span><FaSearch /></span>
-                            </div>
-                            <div className="newAdd">
-                                <Link className='btn' to='/dashborad/all-sub-admin'>sub-admin</Link>
-                            </div>
+                            </div> */}
+
                         </div>
                         <div className="loading-elements">
                             <div className="elements">
@@ -56,7 +55,6 @@ const AllUser = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-
                                             {user.length > 0 && user?.filter(item => item._id !== userInfo._id)?.map((item, index) =>
                                                 <tr key={index}>
                                                     <td data-label='No'>{index + 1}</td>
@@ -74,7 +72,7 @@ const AllUser = () => {
                                                         </button>
                                                         <button onClick={() => dispatch(change_user_role(item._id))}>
                                                             {
-                                                                userInfo.role === 'admin' ? <abbr title='Change user role'>{item.role === 'user' ? "User" : "Editor"}</abbr> : ''
+                                                                userInfo.role === 'admin' ? <abbr title='Change user role'>{item.role === 'user' ? "Editor" : "User"}</abbr> : ''
                                                             }
                                                         </button>
                                                     </td>
@@ -89,6 +87,9 @@ const AllUser = () => {
                         </div>
                     </div>
                 </div>}
+            <div style={{ textAlign: "center" }}>
+                {block_circle_loader && <BlockCircleLoader />}
+            </div>
 
         </div>
     )

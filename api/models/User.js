@@ -15,7 +15,7 @@ const userSchema = mongoose.Schema(
       type: String,
       // select: false, can't get this when we find or another method
     },
-    image: {
+    profilephoto: {
       type: String,
     },
     loginMethod: {
@@ -23,7 +23,7 @@ const userSchema = mongoose.Schema(
     },
     role: {
       type: String,
-      default: "user"
+      default: "user",
     },
     access_status: {
       type: String,
@@ -31,8 +31,12 @@ const userSchema = mongoose.Schema(
     },
     access_token: {
       type: String,
-      default: ""
-    }
+      default: "",
+    },
+    activate: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamp: true,

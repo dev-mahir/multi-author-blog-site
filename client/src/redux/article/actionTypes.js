@@ -18,6 +18,12 @@ export const SEARCH_ARTICLE = "SEARCH_ARTICLE";
 
 export const DELETE_ARTICLE = "DELETE_ARTICLE";
 
+export const POPULAR_ARTICLE = "POPULAR_ARTICLE";
+
+export const LIKE_DISLIKE_CLICK = "LIKE_DISLIKE_CLICK";
+
+
+
 
 
 

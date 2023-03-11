@@ -28,40 +28,30 @@ import ErrorPage from "./pages/Error/ErrorPage";
 import HomePage from "./pages/Home/HomePage";
 import Home from "./components/Home/HomepageContent/Home";
 import { get_notification, visitors_count } from "./redux/dashboard/action";
-import CircleLoader from "./components/Loader/CircleLoader";
+import { get_popular_articles } from "./redux/article/action";
+import PrivacyPolicy from "./pages/Privacy/Privacy";
 
 
-
+export const authToken = getCookie("authToken");
 
 function App() {
-  const { circle_loader } = useSelector( state => state.loader);
   const dispatch = useDispatch();
   const tokenDispatch = useDispatch();
-  const authToken = getCookie("authToken");
 
   useEffect(() => {
-    tokenDispatch(check_token(authToken));
-  }, [authToken, tokenDispatch]);
-
-
-  useEffect(() => {
+    dispatch(visitors_count());
     dispatch(get_cat());
     dispatch(get_notification());
-  }, [dispatch]);
+    dispatch(get_popular_articles());
+    tokenDispatch(check_token(authToken));
+  }, []);
 
 
 
-
-  useEffect(() => { 
-    dispatch(visitors_count());
-  },[]);
-
-
-  
 
   return (
     <>
-      {circle_loader && <CircleLoader /> } 
+      {/* {circle_loader && <CircleLoader />} */}
       <ToastContainer style={{ zIndex: 99999999999 }} />
       <Routes>
         <Route path="/test" element={<Login />}></Route>
@@ -69,26 +59,28 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/user/email-verify" element={<EmailVerify />}></Route>
 
+
         <Route path="/" element={<HomePage />}>
           <Route path="/" element={<Home />}></Route>
           <Route path="/article/details/:slug" element={<SingleArticale />}></Route>
           <Route path="/article/:type/:searchValue" element={<SearchArticle />}></Route>
+          <Route path="/privacy-policy" element={<PrivacyPolicy />}></Route>
         </Route>
 
         <Route path="/user/:username" element={<UserDetails />}></Route>
 
-        {/* <Route element={<ProtectRoute />}> */}
-        <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="/dashboard" element={<DashboardContent />}></Route>
-          <Route path="/dashboard/all-article" element={<DashboardArticle />}></Route>
-          <Route path="/dashboard/edit-article/:slug" element={<ArticleEdit />}></Route>
-          <Route path="/dashboard/article-add" element={<ArticleAdd />}></Route>
-          <Route path="/dashboard/all-category" element={<AllCategory />}></Route>
-          <Route path="/dashboard/add-category" element={<AddCategory />}></Route>
-          <Route path="/dashboard/tag" element={<AllTag />}></Route>
-          <Route path="/dashboard/comments" element={<DashComments />}></Route>
-          <Route path="/dashboard/users" element={<AllUser />}></Route>
-          {/* </Route> */}
+        <Route element={<ProtectRoute />}>
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="/dashboard" element={<DashboardContent />}></Route>
+            <Route path="/dashboard/all-article" element={<DashboardArticle />}></Route>
+            <Route path="/dashboard/edit-article/:slug" element={<ArticleEdit />}></Route>
+            <Route path="/dashboard/article-add" element={<ArticleAdd />}></Route>
+            <Route path="/dashboard/all-category" element={<AllCategory />}></Route>
+            <Route path="/dashboard/add-category" element={<AddCategory />}></Route>
+            <Route path="/dashboard/tag" element={<AllTag />}></Route>
+            <Route path="/dashboard/comments" element={<DashComments />}></Route>
+            <Route path="/dashboard/users" element={<AllUser />}></Route>
+          </Route>
         </Route>
         <Route path="*" element={<ErrorPage />}></Route>
 

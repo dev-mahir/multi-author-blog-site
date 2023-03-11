@@ -97,12 +97,12 @@ const AllCategory = () => {
                     <div className="numof">
                         <h2>Category {category.length === 0 ? "" : `(${category.length})`} </h2>
                     </div>
-                    <div className="searchOf">
+                    {/* <div className="searchOf">
                         <div className="search">
                             <input onChange={handleSearch} type="text" placeholder='search article' className="form-control" />
                         </div>
                         <span><FaSearch /></span>
-                    </div>
+                    </div> */}
                     <div className="newAdd">
                         <Link className='btn' to='/dashboard/add-category'>Add New</Link>
                     </div>

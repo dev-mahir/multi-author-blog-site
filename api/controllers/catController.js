@@ -1,3 +1,4 @@
+import Article from "../models/Article.js";
 import Category from "../models/Category.js";
 import createError from "../utilis/createError.js";
 import { createSlug } from "../utilis/createSlug.js";
@@ -34,10 +35,11 @@ export const get_category = async (req, res, next) => {
     const limit = Number(req.query.limit) || 0;
     const skip = (page - 1) * limit;
     const search = new RegExp(req.body.search, "i");
-
     const category = await Category.find({ name: search })
       .skip(skip)
       .limit(limit);
+    
+  
     res.status(200).json({
       message: "Success",
       category,
@@ -46,6 +48,15 @@ export const get_category = async (req, res, next) => {
     console.log(error);
   }
 };
+
+
+
+
+
+
+
+
+
 
 export const delete_category = async (req, res, next) => {
   try {

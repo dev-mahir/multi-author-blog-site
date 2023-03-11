@@ -29,16 +29,16 @@ const Login = () => {
     e.preventDefault();
     if (!input.email || !input.password) {
     } else {
-      dispatch(user_login(input, setInput));
+      dispatch(user_login(input, setInput, navigate));
     }
   }
 
 
-  useEffect(() => {
-    if (authenticate) {
-      return navigate('/')
-    }
-  }, [authenticate, navigate]);
+  // useEffect(() => {
+  //   if (authenticate) {
+  //     return navigate(-1)
+  //   }
+  // }, [authenticate, navigate]);
 
 
   return (

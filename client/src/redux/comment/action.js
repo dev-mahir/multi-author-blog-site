@@ -7,9 +7,8 @@ import { ADD_COMMENT, GET_COMMENT} from './actionTypes'
 export const add_comment = (data, setCommentText) => async (dispatch) => {
   try {
     axios
-      .post(`${API_BASE_URL}/api/v1/article/add-comment`, data)
+      .post(`${API_BASE_URL}/api/v1/article/add-comment`, data, {withCredentials: true})
       .then((res) => {
-        console.log(res);
         setCommentText("");
         dispatch({ type: ADD_COMMENT, payload: res.data.comment });
       })
@@ -25,7 +24,7 @@ export const add_comment = (data, setCommentText) => async (dispatch) => {
 export const add_reply = (id,data, setReplyText) => async (dispatch) => {
   try {
     axios
-      .patch(`${API_BASE_URL}/api/v1/article/reply-comment/${id}`, data)
+      .patch(`${API_BASE_URL}/api/v1/article/reply-comment/${id}`, data, {withCredentials:true})
       .then((res) => {
         console.log(res.data.comment);
 

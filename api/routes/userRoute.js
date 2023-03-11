@@ -13,18 +13,17 @@ const router = Router();
 
 
 
-router.put("/user/role/:id", change_user_role);
-router.put("/user/block/:id", block_unblock_user);
+router.put("/role/:id", change_user_role);
 
+router.put("/block/:id", block_unblock_user);
 
-router.post("/user/login", user_login);
+router.post("/login", user_login);
 
+router.get("/", get_user);
 
-router.get("/user", get_user);
+router.post("/register", upload.single("profilephoto"), userRegister);
 
-router.post("/user/register", upload.single('image'), userRegister);
-
-router.post("/user/email-verify",  user_email_verify);
+router.post("/email-verify",  user_email_verify);
 
 
 

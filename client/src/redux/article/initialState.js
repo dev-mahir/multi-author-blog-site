@@ -9,7 +9,8 @@ const initialState = {
   count: 0,
   cat_article: [],
   tag_article: [],
-  search_article: []
+  search_article: [],
+  popular_article: []
 };
 
 export default initialState;

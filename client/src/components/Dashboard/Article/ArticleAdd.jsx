@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Helmet from 'react-helmet';
-import { Link, useParams } from 'react-router-dom';
-import { BsCardImage } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_cat } from '../../../redux/category/action'
 import { get_tag } from '../../../redux/tag/action';
-import Editor from './Editor/Editor';
-import { add_article, get_single_article } from '../../../redux/article/action';
+import { add_article } from '../../../redux/article/action';
 import { slugGenerator } from '../../../utilis/slugGenerator';
 import Spinner from '../../Loader/Spinner/Spinner';
 import JoditEditor from 'jodit-react';
@@ -73,7 +71,6 @@ const ArticleAdd = () => {
         }
     }
 
-    console.log(text);
 
     useEffect(() => {
         dispatch(get_cat());

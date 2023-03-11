@@ -1,4 +1,4 @@
-import { deleteCookie } from "../../utilis/cookies.js";
+import { deleteCookie, setCookie } from "../../utilis/cookies.js";
 import {
   LOGIN_SUCCESS,
   CHECK_EMPTY_FIELD,
@@ -16,10 +16,11 @@ import initialState from "./initialState.js";
 const authReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case USER_LOGIN:
+      setCookie("authToken", payload.token);
       return {
         ...state,
         authenticate: true,
-        userInfo: payload,
+        userInfo: payload.user,
       };
     case LOGIN_SUCCESS:
       return {

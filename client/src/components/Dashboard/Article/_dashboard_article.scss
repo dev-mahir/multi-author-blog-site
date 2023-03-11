@@ -1,4 +1,10 @@
+
+
 .dashborad-article{
+
+
+
+
     .article-action-pagination{
         min-height: calc(100vh - 100px);
         padding: 10px 14px;
@@ -9,6 +15,7 @@
             min-height: 70vh;
             display: flex;
             flex-direction: column;
+            align-items: center;
             .articles{
                 display: grid;
                 grid-template-columns: repeat(4,1fr);

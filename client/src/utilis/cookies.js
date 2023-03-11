@@ -12,3 +12,9 @@ export function getCookie(name) {
 export function deleteCookie(cookieKey) {
   return document.cookie = cookieKey + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
+
+
+
+export function setCookie(name, value, expires) {
+  document.cookie = `${name}=${value}`;
+}

@@ -21,7 +21,7 @@ const DashboradNavbar = () => {
         <div className="dashborad-navbar-left-side">
           <Avatar />
           <label className='bar' htmlFor="sidebar"><span><BsListUl /></span></label>
-          <h2><Link to='/dashborad'>{userInfo?.name}</Link></h2>
+          <h2><Link to='/dashboard'>{userInfo?.name}</Link></h2>
         </div>
         <div className="dashborad-navbar-right-side">
           <h2><Link to='/'><span>View site</span></Link></h2>

@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { delete_article, get_users_article } from '../../../redux/article/action';
 import DeleteModal from '../../Modal/DeleteModal/DeleteModal';
+import BlockCircleLoader from '../../Loader/BlockCircleLoader/BlockCircleLoader';
 
 const DashboardArticle = () => {
 
     const { users_article } = useSelector(state => state.article);
+    const { block_circle_loader } = useSelector(state => state.loader);
     const [show, setShow] = useState(false);
     const [articleId, setArticleId] = useState('');
     const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const DashboardArticle = () => {
 
     useEffect(() => {
         dispatch(get_users_article());
-    }, [dispatch]);
+    }, []);
 
 
     return (
@@ -43,12 +45,12 @@ const DashboardArticle = () => {
                     <div className="numof">
                         <h2>Article   {users_article.length > 0 ? `(${users_article.length})` : ""} </h2>
                     </div>
-                    <div className="searchOf">
+                    {/* <div className="searchOf">
                         <div className="search">
                             <input type="text" placeholder='search article' className="form-control" />
                         </div>
                         <span><FaSearch /></span>
-                    </div>
+                    </div> */}
                     <div className="newAdd">
                         <Link className='btn' to='/dashboard/article-add'>Add New</Link>
                     </div>
@@ -56,42 +58,37 @@ const DashboardArticle = () => {
 
 
 
-                <div className="height-70vh">
+                <div className="height-70vh dashboard_article ">
+                    {block_circle_loader &&     <BlockCircleLoader />}
+                
                     <div className="articles">
-
-
-                        
                         {show && <DeleteModal
                             title="Delete tag"
                             description="Are you sure to want delete tag?"
                             close={setShow}
                             handleDelete={handletagDelete}
                         />}
-
-
                         {users_article.length > 0 &&
                             users_article.map((item, index) =>
-                                <div  key={index} className="article">
+                                <div key={index} className="article">
                                     <img src={`/images/${item.image}`} alt="" />
-                                    <Link className='line-clamp-1' to={`/${item.slug}`}>{item.title}</Link>
+                                    <Link className='line-clamp-1' to={`/article/details/${item.slug}`}>{item.title}</Link>
                                     <p></p>
                                     <div className="action">
                                         <span>
                                             <Link to={`/dashboard/edit-article/${item.slug}`}><MdEdit /></Link>
                                         </span>
                                         <span>
-                                            <Link to="/"><FaRegEye /></Link>
+                                            <Link to={`/article/details/${item.slug}`}><FaRegEye /></Link>
                                         </span>
                                         <span onClick={() => handleDeleteModalShow(item._id)}><MdDelete /></span>
                                     </div>
                                 </div>
                             )
                         }
-
                         {users_article.length === 0 && <p>No post found</p>}
                     </div>
                 </div>
-
             </div>
         </div>
     )

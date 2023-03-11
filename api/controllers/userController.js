@@ -38,18 +38,17 @@ export const user_login = async (req, res, next) => {
           },
           "7d"
         );
+
         const { password, access_token, ...newData } = emailCheck._doc;
         res
           .status(200)
           .cookie("authToken", token, {
             expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 3),
-            // httpOnly: true,
-            // sameSite: "none",
-            // secure: true,
           })
           .json({
             message: "Login success",
             user: newData,
+            token,
           });
       }
     } else {
@@ -78,7 +77,7 @@ export const userRegister = async (req, res, next) => {
         const user = await User.create({
           name,
           email,
-          image: req?.file?.filename || "",
+          profilephoto: req?.file?.filename || "",
           username: createSlug(name),
           password: hash(password),
           access_token: otp,
@@ -102,16 +101,18 @@ export const userRegister = async (req, res, next) => {
             "7d"
           );
 
-          const option = {
+          const options = {
             expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
+            secure: true,
+            httpOnly: true,
+            sameSite: "lax",
           };
-
           res
-            .status(201)
-            .cookie("emailVerifyToken", emailVerifyToken, option)
+            .status(201).cookie("emailVerifyToken", emailVerifyToken, options)
             .json({
               message: "Registration successfull",
               user,
+              token: emailVerifyToken,
             });
         } else {
           next(createError(400, "Registration failed"));
@@ -128,6 +129,7 @@ export const user_email_verify = async (req, res, next) => {
   try {
     const { otp } = req.body;
     const { emailVerifyToken } = req.cookies;
+    console.log(emailVerifyToken);
 
     if (!otp) {
       return next(createError(404, "Please provide your OTP"));
@@ -150,6 +152,7 @@ export const user_email_verify = async (req, res, next) => {
               ...req.body,
               access_token: "",
               loginMethod: "mannually",
+              activate: true
             },
             { new: true }
           );
@@ -184,7 +187,6 @@ export const user_email_verify = async (req, res, next) => {
     }
   } catch (error) {
     next(createError(500, "Internal server error. Try again"));
-    console.log(error);
   }
 };
 
@@ -236,7 +238,6 @@ export const block_unblock_user = async (req, res, next) => {
   }
 };
 
-
 export const change_user_role = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -264,7 +265,6 @@ export const change_user_role = async (req, res, next) => {
         user,
       });
     }
-
   } catch (error) {
     next(createError(500, "Internal server error. Try again"));
     console.log(error);

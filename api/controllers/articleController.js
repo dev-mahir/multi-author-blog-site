@@ -7,10 +7,10 @@ import { createSlug } from "../utilis/createSlug.js";
 
 export const add_article = async (req, res, next) => {
   try {
-    console.log(req.admin);
+    
     const article = await Article.create({
       ...req.body,
-      image: req.file.filename,
+      image: req.file.filename || "",
       adminId: req.admin.id,
       admin_name: req.admin.name,
     });
@@ -155,7 +155,7 @@ export const search_article = async (req, res, next) => {
 
     const search = new RegExp(value, "i");
   
-    const article = await Article.find({ title: search });
+    const article = await Article.find({ title: search }).populate('category' ,'name').populate('tag', 'name');
       res.status(200).json({
         message: "Success",
         article,
@@ -376,17 +376,20 @@ export const popular_article = async (req, res, next) => {
     
     const article = await Article.aggregate([
       { $match: {} },
-      { $sort: 'views' }
+      { $sort: { 'views': -1 } },
+      { $limit: 3}
     ]);
 
-    
-
-    res.status(201).json({
+  
+    res.status(200).json({
       message: "Success",
-      comment: replyComment,
+      article 
     });
   } catch (error) {
     console.log(error);
     next(createError(500, "Internal server error"));
   }
 };
+
+
+

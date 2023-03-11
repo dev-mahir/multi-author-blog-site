@@ -11,6 +11,7 @@ export const userVisitorsCount = async (req, res, next) => {
     res.status(200).json({ count: visitor.count });
   } catch (error) {
     next(createError(500, "Internal server error"));
+    console.log(error);
   }
 };
 

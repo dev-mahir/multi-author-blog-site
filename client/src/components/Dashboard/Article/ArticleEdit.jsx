@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Helmet from 'react-helmet';
 import { Link, useParams } from 'react-router-dom';
-import { BsCardImage } from "react-icons/bs";
 import { useDispatch, useSelector } from 'react-redux';
 import { get_cat } from '../../../redux/category/action'
 import { get_tag } from '../../../redux/tag/action';
-import Editor from './Editor/Editor';
-import { add_article, edit_article, get_single_article } from '../../../redux/article/action';
+import { edit_article, get_single_article } from '../../../redux/article/action';
 import { slugGenerator } from '../../../utilis/slugGenerator';
 import Spinner from '../../Loader/Spinner/Spinner';
 
@@ -21,7 +19,7 @@ const ArticleEdit = () => {
     const { single_article } = useSelector(state => state.article);
     const { slug } = useParams();
     const dispatch = useDispatch();
-    const get_article_dispatch = useDispatch();
+
 
     const [imagePrev, setImagePrev] = useState("");
     const [text, setText] = useState("");
@@ -152,7 +150,7 @@ const ArticleEdit = () => {
                     <div className="form-group img_upload">
                         <label htmlFor="article text">Article text</label>
 
-                        <Editor text={text} setText={setText} />
+               
 
                     </div>
                     <div className="form-group">

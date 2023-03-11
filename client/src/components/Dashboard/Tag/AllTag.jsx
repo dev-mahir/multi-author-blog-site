@@ -31,7 +31,7 @@ const AllTag = () => {
     if (!input.name) {
       toast.error("Fields is required");
     } else {
-      dispatch(add_tag(input,setInput, setAddShow));
+      dispatch(add_tag(input, setInput, setAddShow));
     }
   }
 
@@ -57,16 +57,12 @@ const AllTag = () => {
     dispatch(edit_tag(tagId, input, setEditShow));
   }
 
-
-
-
-
   const page = 1;
   const limit = 8
 
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
-  }
+  // const handleSearch = (e) => {
+  //   setSearch(e.target.value)
+  // }
 
   useEffect(() => {
     get_dispatch(get_tag(page, search, limit));
@@ -86,7 +82,7 @@ const AllTag = () => {
   return (
     <div className='all-category'>
 
-      
+
       {show && <DeleteModal
         title="Delete tag"
         description="Are you sure to want delete tag?"
@@ -125,19 +121,19 @@ const AllTag = () => {
           <div className="numof">
             <h2>Tag ({tag.length})</h2>
           </div>
-          <div className="searchOf">
+          {/* <div className="searchOf">
             <div className="search">
               <input onChange={handleSearch} type="text" placeholder='search article' className="form-control" />
             </div>
             <span><FaSearch /></span>
-          </div>
+          </div> */}
           <div className="newAdd">
             <button onClick={() => setAddShow(true)} className='btn'>Add New</button>
           </div>
         </div>
         <div className="height-60vh">
           <div className="categorys">
-            {tag.length >0  && tag.map((item, index) =>
+            {tag.length > 0 && tag.map((item, index) =>
               <div key={index} className="category">
                 <div className="name">{item.name}</div>
                 <div className="action">
@@ -150,14 +146,18 @@ const AllTag = () => {
         </div>
       </div>
 
-      {
-        tag.length > 0 && <Pagination
-          itemPerPage="5"
-          totalItem="20"
-          page="1"
-          nextBtn=""
-          prevBtn=""
-        />}
+      
+      {/* hidden pagination  */}
+      <div hidden>
+        {
+          tag.length > 0 && <Pagination
+            itemPerPage="5"
+            totalItem="20"
+            page="1"
+            nextBtn=""
+            prevBtn=""
+          />}
+      </div>
     </div>
   )
 }

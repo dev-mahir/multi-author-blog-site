@@ -6,6 +6,8 @@ import {
   GET_SINGLE_ARTICLE,
   GET_TAG_ARTICLE,
   GET_USERS_ARTICLE,
+  LIKE_DISLIKE_CLICK,
+  POPULAR_ARTICLE,
   SEARCH_ARTICLE,
 } from "./actionTypes.js";
 import initialState from "./initialState.js";
@@ -64,6 +66,16 @@ const articleReducer = (state = initialState, { type, payload }) => {
         ...state,
         old_article: payload,
       };
+    case POPULAR_ARTICLE:
+      return {
+        ...state,
+        popular_article: payload,
+      };
+    case LIKE_DISLIKE_CLICK:
+      return {
+        ...state,
+        single_article: payload
+      }
     default:
       return state;
   }

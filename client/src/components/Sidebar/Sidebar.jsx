@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { FaChevronRight } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom'
+import { get_popular_articles } from '../../redux/article/action';
 import { get_tag } from '../../redux/tag/action';
 import PopularArticle from '../Article/Popular/PopularArticle';
 import './_sidebar.scss'
 
 const Sidebar = () => {
+
   const { category } = useSelector(state => state.cat);
   const { tag } = useSelector(state => state.tag);
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     dispatch(get_tag());
-  }, [dispatch]);
+  }, []);
 
 
 

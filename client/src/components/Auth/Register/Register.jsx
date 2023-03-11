@@ -10,7 +10,8 @@ import Spinner from '../../../components/Loader/Spinner/Spinner'
 import './_register.scss'
 
 const Register = () => {
-  const { loader, authenticate } = useSelector(state => state.auth);
+  const { authenticate } = useSelector(state => state.auth);
+  const { spinner } = useSelector(state => state.loader);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [imgPreview, setImgPreview] = useState('');
@@ -62,7 +63,7 @@ const Register = () => {
       formData.append("email", input.email);
       formData.append("password", input.password);
       
-      formData.append("image", input.image);
+      formData.append("profilephoto", input.image);
 
       dispatch(user_registration(formData, setInput, setImgPreview, e, navigate));
     }
@@ -102,7 +103,7 @@ const Register = () => {
               <p></p>
             </div>
             <div className="form-group">
-              <input hidden type="file" onChange={handleImage} name='image' id='reg-image' />
+              <input hidden type="file" onChange={handleImage} name='profilephoto' id='reg-image' />
               <div className="image-file">
                 <div className="image">
 
@@ -118,8 +119,8 @@ const Register = () => {
             {emptyMess && <p className='empty-fields'>{emptyMess}</p>}
             <div className="form-group">
 
-              <button className="btn btn-block">
-                {loader ? <Spinner /> : "Register"}
+              <button type='submit' className="btn btn-block">
+                {spinner ? <Spinner /> : "Register"}
               </button>
 
             </div>

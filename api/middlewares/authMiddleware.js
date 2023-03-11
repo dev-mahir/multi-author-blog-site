@@ -3,7 +3,6 @@ import { tokenVerify } from "../utilis/token.js";
 
 export const authMiddleware = (req, res, next) => {
   const { authToken } = req.cookies;
-
   try {
     const checkToken = tokenVerify(authToken);
     if (checkToken) {
@@ -14,7 +13,7 @@ export const authMiddleware = (req, res, next) => {
         role: checkToken.role,
         loginMethod: checkToken.loginMethod,
         image: checkToken.image,
-        access_status:checkToken.access_status
+        access_status: checkToken.access_status,
       };
       next();
     }
@@ -22,3 +21,4 @@ export const authMiddleware = (req, res, next) => {
     next(createError(404, "Only admin allow"));
   }
 };
+

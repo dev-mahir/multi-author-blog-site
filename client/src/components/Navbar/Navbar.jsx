@@ -8,7 +8,7 @@ import { user_logout } from '../../redux/auth/action';
 
 
 const Navbar = () => {
-  const { authenticate } = useSelector(state => state.auth);
+  const { authenticate , userInfo} = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   const handleUserLogOut = () => { 
@@ -29,6 +29,9 @@ const Navbar = () => {
           </div>
           <div className="col-8">
             <ul className="menu active">
+              {userInfo?.role === "admin" && <li className='link-item'>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>}
               <li className='link-item'>
                 <Link to="/home">Home</Link>
               </li>

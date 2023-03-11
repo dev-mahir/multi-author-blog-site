@@ -19,9 +19,6 @@ const Comments = ({ single_article }) => {
   const handleReplyBoxShow = (index) => {
     setReplayBox(index);
   }
-
-
-
   const handleSubmitComment = (e) => {
     e.preventDefault();
     const data = {
@@ -37,7 +34,10 @@ const Comments = ({ single_article }) => {
 
 
   const handleSubmitReply = (commentId) => {
-    const data = {
+    if (!replyText) {
+
+    } else { 
+          const data = {
       reply_name: userInfo.name,
       reply_image: userInfo.image,
       reply_time: Date.now(),
@@ -45,13 +45,15 @@ const Comments = ({ single_article }) => {
       comment_id: commentId
     }
     dispatch(add_reply(commentId, data, setReplyText));
+    }
+
   }
 
 
 
   useEffect(() => {
     dispatch(get_comment(single_article._id));
-  }, [single_article])
+  }, [single_article, dispatch])
 
 
   return (
@@ -61,8 +63,8 @@ const Comments = ({ single_article }) => {
       </div>
       <div className='comments'>
 
-        {comments && comments.map((item, index) => {
-          const date = new Date(item.createdAt);
+        {comments.length > 0 && comments.map((item, index) => {
+          const comment_date = new Date(item.createdAt);
 
           return <div key={index}>
             <div className="main-reply-comment">
@@ -72,7 +74,7 @@ const Comments = ({ single_article }) => {
                   <div className="name-time">
                     <h4>{single_article?.admin_name}</h4>
                     <span>
-                      <ReactTimeAgo date={date} locale="en-US" />
+                      <ReactTimeAgo date={comment_date} locale="en-US" />
                     </span>
                   </div>
                   <p>{item.comment_text}</p>
@@ -80,13 +82,18 @@ const Comments = ({ single_article }) => {
 
                   <div className="reply_comment">
 
-                    {item.reply_comment.map((replyItem, index) => (
-                      <div key={index}>
+                    {item.reply_comment.map((replyItem, index) => { 
+
+          
+
+                      return(     <div key={index}>
                         <img src="" alt="" />
                         <div className="name-time-comment reply ">
                           <div className="name-time">
                             <h4>{replyItem.reply_name}</h4>
-                            <span>time</span>
+                            <span>
+                              {/* <ReactTimeAgo date={reply_date} locale="en-US" /> */}
+                            </span>
                           </div>
                           <div className='reply-text'>
                             <p>{replyItem.reply_text}</p>
@@ -95,8 +102,10 @@ const Comments = ({ single_article }) => {
                           </div>
                         </div>
 
-                      </div>
-                    ))}
+                      </div>) 
+                    }
+                  
+                  )}
 
 
 
@@ -149,14 +158,14 @@ const Comments = ({ single_article }) => {
       <div className="comment_submit">
         <h2>Give Your Comment</h2>
 
-        {userInfo?.role === 'user' && <form onSubmit={handleSubmitComment}>
+        <form onSubmit={handleSubmitComment}>
           <div className="form-group">
             <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} className='form-control' placeholder='write something'></textarea>
           </div>
           <div className="form-group">
             <button disabled={commentText ? false : true} type='submit' className="btn">Submit</button>
           </div>
-        </form>}
+        </form>
 
 
         {!authenticate && <ul className='login-first'>

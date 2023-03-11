@@ -1,13 +1,8 @@
 import {
+  BLOCK_CIRCLE_LOADER_START,
+  BLOCK_CIRCLE_LOADER_STOP,
   CIRCLE_LOADER_START,
   CIRCLE_LOADER_STOP,
-  LOADER_END,
-  LOADER_START,
-  LOGIN_FAILED,
-  LOGIN_SUCCESS,
-  REGISTER_FAILED,
-  REGISTER_REQUEST,
-  REGISTER_SUCCESS,
   SPINNER_START,
   SPINNER_STOP,
   TOP_LOADER_START,
@@ -48,6 +43,16 @@ const loaderTopReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         circle_loader: false,
+      };
+    case BLOCK_CIRCLE_LOADER_START:
+      return {
+        ...state,
+        block_circle_loader: true,
+      };
+    case BLOCK_CIRCLE_LOADER_STOP:
+      return {
+        ...state,
+        block_circle_loader: false,
       };
     default:
       return state;

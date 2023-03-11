@@ -27,13 +27,13 @@ router.post("/", authMiddleware, upload.single("image"), add_article);
 router.get("/", get_article);
 router.get("/old-article", get_old_article);
 router.get("/get/all", get_all_article);
-router.get("/popular-article", popular_article);
+router.get("/popular-article/get", popular_article);
 
 
 router.post("/add-comment", add_comment);
 router.post("/single-article/:type/:articleId", add_like_dislike);
 
-router.delete("/delete/:id", delete_article);
+router.delete("/delete/:id",authMiddleware,  delete_article);
 router.get("/search/:value", search_article );
 router.get("/category/:slug", get_category_article);
 router.get("/tag/:slug", get_tag_article);

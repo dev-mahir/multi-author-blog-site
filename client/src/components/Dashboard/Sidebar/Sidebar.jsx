@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from "react-router-dom";
 import { AiFillDashboard } from "react-icons/ai";
 import { RiArticleLine } from "react-icons/ri";
-import { FaEye, FaPlusCircle, FaRegCaretSquareRight, FaTag } from "react-icons/fa";
+import { FaEye, FaRegCaretSquareRight, FaTag } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi";
 import { BsChevronRight } from "react-icons/bs";
 
@@ -26,45 +26,27 @@ const Sidebar = () => {
         </li>
 
         <li>
-          <label htmlFor='article'>
-            <h3>
-              <span><RiArticleLine /></span>
-              <span>Article</span>
-            </h3>
-            <span className='right_icon1'><BsChevronRight /></span>
-          </label>
-          <div className="article_category">
-            <Link to='/dashboard/all-article'>
-              <span><FaEye /></span>
-              <span>All Article</span>
-            </Link>
-            <Link to='/dashboard/article-add'>
-              <span><FaPlusCircle /></span>
-              <span>Add Article</span>
-            </Link>
-          </div>
+          <Link to='/dashboard/all-article'>
+            <label>
+              <h3>
+                <span><RiArticleLine /></span>
+                <span>Article</span>
+              </h3>
+            </label>
+          </Link>
         </li>
+     
 
         <li>
-          <label htmlFor='category'>
-            <h3>
-              <span><FaRegCaretSquareRight /></span>
-              <span>Category</span>
-            </h3>
-            <span className='right_icon2'><BsChevronRight /></span>
-          </label>
-          <div className="category_category">
-            <Link to='/dashboard/all-category'>
-              <span><FaEye /></span>
-              <span>All Category</span>
-            </Link>
-            <Link to='/dashboard/add-category'>
-              <span><FaPlusCircle /></span>
-              <span>Add Category</span>
-            </Link>
-          </div>
+          <Link to='/dashboard/all-category'>
+            <label>
+              <h3>
+                <span><FaRegCaretSquareRight /></span>
+                <span>Category</span>
+              </h3>
+            </label>
+          </Link>
         </li>
-
         <li>
           <Link to='/dashboard/tag'>
             <label>
@@ -76,36 +58,19 @@ const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <label htmlFor='user'>
-            <h3>
-              <span><HiUserGroup /></span>
-              <span>User</span>
-            </h3>
-            <span className='right_icon4'><BsChevronRight /></span>
-          </label>
-          <div className="user_category">
-            <Link to='/dashboard/users'>
-              <span><FaEye /></span>
-              <span>All User</span>
-            </Link>
-            <Link to='/dashboard/all-sub-admin'>
-              <span><FaEye /></span>
-              <span>All sub-admin</span>
-            </Link>
-          </div>
-        </li>
-
-        {/* <li>
-          <Link to='/dashboard/comments'>
+          <Link to='/dashboard/users'>
             <label>
               <h3>
-                <span><AiFillDashboard /></span>
-                <span>Comments</span>
+                <span><HiUserGroup /></span>
+                <span>User</span>
               </h3>
             </label>
           </Link>
-        </li> */}
+        </li>
+
+      
         
+
       </ul>
     </div>
   )

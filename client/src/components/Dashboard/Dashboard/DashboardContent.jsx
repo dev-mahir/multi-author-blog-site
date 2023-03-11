@@ -1,40 +1,45 @@
 import React from 'react';
 import { useSelector } from "react-redux";
 import { BsFillPeopleFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import Chart from 'react-apexcharts'
+import { RiArticleLine } from "react-icons/ri";
+import Chart from 'react-apexcharts';
+import { FaEye, FaRegCaretSquareRight, FaTag } from "react-icons/fa";
+
 
 const DashboardContent = () => {
   const { views } = useSelector(state => state.dashboard);
-  const chartOptions = {
-    series: [
-      {
-        name: "Visitor",
-        data: [12, 1254, 562, 465, 214, 554, 555, 4, 414, 11, 14, 4]
-      }
-    ],
-    options: {
-      color: ["#181ee8", "#181ee8"],
-      chart: {
-        background: 'transparent'
-      },
-      dataLabels: {
-        enabled: false
-      },
-      stroke: {
-        curve: "smooth"
-      },
-      xaxis: {
-        categories: ['Jan', "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-      },
-      legend: {
-        position: "top"
-      },
-      grid: {
-        show: 'false'
-      }
-    }
-  }
+  const { count } = useSelector(state => state.article);
+  const { category } = useSelector(state => state.cat);
+  const { tag } = useSelector(state => state.tag);
+  // const chartOptions = {
+  //   series: [
+  //     {
+  //       name: "Visitor",
+  //       data: [12, 1254, 562, 465, 214, 554, 555, 4, 414, 11, 14, 4]
+  //     }
+  //   ],
+  //   options: {
+  //     color: ["#181ee8", "#181ee8"],
+  //     chart: {
+  //       background: 'transparent'
+  //     },
+  //     dataLabels: {
+  //       enabled: false
+  //     },
+  //     stroke: {
+  //       curve: "smooth"
+  //     },
+  //     xaxis: {
+  //       categories: ['Jan', "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  //     },
+  //     legend: {
+  //       position: "top"
+  //     },
+  //     grid: {
+  //       show: 'false'
+  //     }
+  //   }
+  // }
   return (
     <div className='dashboard_content dashboard_index'>
 
@@ -43,7 +48,7 @@ const DashboardContent = () => {
 
           <div className="single-card">
             <div className="card_icon">
-              <BsFillPeopleFill />
+              <FaEye />
             </div>
             <div className="card_info">
               <h2>{views}</h2>
@@ -53,7 +58,7 @@ const DashboardContent = () => {
 
 
           {/* dynamic  */}
-          <Link to="/" className="single-card">
+          <div className="single-card">
             <div className="card_icon">
               <BsFillPeopleFill />
             </div>
@@ -61,7 +66,34 @@ const DashboardContent = () => {
               <h2>23</h2>
               <span>Visitors</span>
             </div>
-          </Link>
+          </div>
+          <div className="single-card">
+            <div className="card_icon">
+              <RiArticleLine />
+            </div>
+            <div className="card_info">
+              <h2>{count}</h2>
+              <span>Articles</span>
+            </div>
+          </div>
+          <div className="single-card">
+            <div className="card_icon">
+              <FaRegCaretSquareRight />
+            </div>
+            <div className="card_info">
+              <h2>{category?.length}</h2>
+              <span>Category</span>
+            </div>
+          </div>
+          <div className="single-card">
+            <div className="card_icon">
+              <FaTag />
+            </div>
+            <div className="card_info">
+              <h2>{tag?.length}</h2>
+              <span>Tag</span>
+            </div>
+          </div>
 
 
 
